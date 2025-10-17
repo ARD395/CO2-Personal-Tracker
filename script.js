@@ -26,3 +26,70 @@ document.querySelectorAll('.nav-icon').forEach(icon => {
     switchTabs(targetTab);
   });
 });
+
+function calculateCO2() {
+// Collect input values
+let electricity = parseFloat(document.getElementById("electricity").value);
+let water = parseFloat(document.getElementById("water").value);
+let distance = parseFloat(document.getElementById("distance").value);
+let transport = document.getElementById("transport").value;
+let trees = parseInt(document.getElementById("trees").value);
+let reuse = document.getElementById("reuse").value;
+let solar = document.getElementById("solar").value;
+let segregate = document.getElementById("segregate").value;
+let lights = document.getElementById("lights").value;
+
+// --- Emission Factors (approx. India averages) ---
+let EF_elec = 713;       // g CO₂ per kWh
+let EF_water = 0.15;     // g CO₂ per litre (150 g/m³)
+let EF_tree = 10000;     // g CO₂ absorbed per tree/year (~10 kg)
+let EF_walk = 0;
+let EF_bike = 55;        // g/km (two-wheeler)
+let EF_car = 122;        // g/km (average petrol car)
+let EF_bus = 80;         // g/km (per passenger)
+let EF_train = 45;       // g/km (per passenger)
+let EF_ev = 40;          // g/km (electric vehicle, considering grid)
+
+
+// --- Select emission factor based on transport ---
+let EF_transport = 0;
+if (transport === "Walking / Bicycle") EF_transport = EF_walk;
+else if (transport === "Two-Wheeler") EF_transport = EF_bike;
+else if (transport === "Car") EF_transport = EF_car;
+else if (transport === "Bus") EF_transport = EF_bus;
+else if (transport === "Train") EF_transport = EF_train;
+else if (transport === "Electric Vehicle") EF_transport = EF_ev;
+
+
+// --- Core CO₂ Calculation (grams) ---
+// Assume electricity usage is monthly → convert to daily (divide by 30)
+let dailyElecCO2 = (electricity / 30) * EF_elec;
+let waterCO2 = water * EF_water;
+let travelCO2 = distance * EF_transport;
+let treeOffset = trees * (EF_tree / 365); // per day
+let totalCO2 = dailyElecCO2 + waterCO2 + travelCO2 - treeOffset;
+// --- Adjust for habits (reductions) ---
+if (solar === "Yes") totalCO2 *= 0.9;
+if (segregate === "Yes") totalCO2 *= 0.95;
+if (reuse === "Yes") totalCO2 *= 0.95;
+if (lights === "Always") totalCO2 *= 0.9;
+else if (lights === "Sometimes") totalCO2 *= 0.95;
+
+
+// --- Ensure non-negative ---
+if (totalCO2 < 0) totalCO2 = 0;
+
+
+// --- Determine Eco Score Tier ---
+let scoreText = "";
+if (totalCO2 < 3000) scoreText = "🌿 Excellent (Very Low Emissions)";
+else if (totalCO2 < 6000) scoreText = "😊 Good (Low Emissions)";
+else if (totalCO2 < 9000) scoreText = "😐 Moderate (Room for Improvement)";
+else if (totalCO2 < 12000) scoreText = "⚠️ Poor (High Emissions)";
+else scoreText = "🚨 Very Poor (Very High Emissions)";
+
+
+document.getElementById("result").innerHTML =
+ `<b>Your estimated daily CO₂ emission:</b> ${Math.round(totalCO2)} grams<br>
+  <b>Eco Score:</b> ${scoreText}`;
+}

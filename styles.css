@@ -3,6 +3,7 @@
   --accent-color: rgb(197, 72, 0);
   --icon-color: rgb(211, 211, 211);
   --shadow-color: rgba(0, 0, 0, 0.3);
+  --font-color: rgb(209, 209, 209);
 }
 
 /* Reset and base styles */
@@ -27,7 +28,7 @@ main.app {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 /* Tabs (pages) */
@@ -72,4 +73,53 @@ main.app {
 .nav-icon.active-icon {
   fill: var(--bg-color);
   transform: scale(1.15);
+}
+
+/* Form styles */
+form {
+  width: 100%;
+}
+fieldset {
+  border: 2px solid var(--accent-color);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: var(--bg-color);
+}
+legend {
+  font-weight: bold;
+  color: var(--font-color);
+}
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+input, select {
+  padding: 6px;
+  width: 98%;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
+button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  background-color: var(--bg-color);
+}
+
+#result {
+ margin-top: 20px;
+ padding: 15px;
+ border-radius: 10px;
+ background-color: #e8f6ed;
+ font-size: 18px;
+ text-align: center;
 }
