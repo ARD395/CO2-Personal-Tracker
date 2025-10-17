@@ -1,5 +1,5 @@
 :root {
-  --bg-color: rgb(0, 0, 60);
+  --bg-color: rgba(0, 0, 60, 0.548);
   --accent-color: rgb(197, 72, 0);
   --icon-color: rgb(211, 211, 211);
   --shadow-color: rgba(0, 0, 0, 0.3);
@@ -17,18 +17,30 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background-image: url(/Images/bg.png);
+  background-repeat: no-repeat;
+  background-size: center/cover;
+  background-attachment: fixed;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
   display: flex;
   flex-direction: column;
 }
 
+
+
 main.app {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+h1 {
+  text-align: center;
+  margin: 1rem 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 70px;
 }
 
 /* Tabs (pages) */
@@ -44,7 +56,8 @@ main.app {
 
 /* Navigation bar */
 .nav-bar {
-  background-color: var(--accent-color);
+  background-color: rgba(0, 0, 0, 0.11);
+  backdrop-filter: blur(10px);
   border-radius: 12px 12px 0 0;
   position: fixed;
   bottom: 0;
@@ -58,21 +71,21 @@ main.app {
 
 /* Navigation icons */
 .nav-icon {
-  width: 35px;
-  height: 35px;
+  width: 4vh;
+  height: auto;
   fill: var(--icon-color);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .nav-icon:hover {
-  fill: var(--bg-color);
+  fill: var(--accent-color);
   transform: scale(1.1);
 }
 
 .nav-icon.active-icon {
-  fill: var(--bg-color);
-  transform: scale(1.15);
+  fill: var(--accent-color);
+  transform: scale(1.1);
 }
 
 /* Form styles */
@@ -80,6 +93,10 @@ form {
   width: 100%;
 }
 fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
   border: 2px solid var(--accent-color);
   border-radius: 10px;
   padding: 20px;
@@ -87,39 +104,59 @@ fieldset {
   background-color: var(--bg-color);
 }
 legend {
-  font-weight: bold;
+  font-family: 'BBH Sans Hegarty', sans-serif;
+  font-size: 30px;
   color: var(--font-color);
 }
 label {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
   display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 input, select {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  font-family: 'Playfair Display', serif;
   padding: 6px;
-  width: 98%;
-  margin-top: 4px;
+  width: 90%;
+  margin-top: 8px;
+  margin-bottom: 8px;
   border-radius: 6px;
   border: 1px solid #aaa;
+  height: 6vh;
 }
 button {
+  margin-top: 30px;
+  height: 15vh;
+  font-family: 'Playfair Display', serif;
   background-color: var(--accent-color);
   color: white;
-  padding: 10px 20px;
   border: none;
+  padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  transition: all 0.5s ease;
 }
 button:hover {
   background-color: var(--bg-color);
+  border: 2px solid var(--accent-color);
+  transition: all 0.5s ease;
 }
 
 #result {
- margin-top: 20px;
- padding: 15px;
- border-radius: 10px;
- background-color: #e8f6ed;
- font-size: 18px;
- text-align: center;
+  font-family: 'Playfair Display', serif;
+  margin-top: 30px;
+  padding: 15px;
+  border: 2px solid var(--accent-color);
+  border-radius: 10px;
+  background-color: var(--accent-color);
+  font-size: 18px;
+  text-align: center;
+}
+
+#filler {
+  height: 12vh;
 }
