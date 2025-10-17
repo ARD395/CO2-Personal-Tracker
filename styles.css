@@ -18,7 +18,7 @@
 
 body {
   min-height: 100vh;
-  background-image: url(/Images/bg.png);
+  background-image: url(Images/bg.png);
   background-repeat: no-repeat;
   background-size: center/cover;
   background-attachment: fixed;
