@@ -7,7 +7,7 @@
   --border-color: rgb(163, 163, 163);
 }
 
-/* Reset and base styles */
+/* -------------------- RESET & BASE STYLES -------------------- */
 *,
 *::before,
 *::after {
@@ -28,8 +28,6 @@ body {
   flex-direction: column;
 }
 
-
-
 main.app {
   flex: 1;
   display: flex;
@@ -44,7 +42,7 @@ h1 {
   font-size: 70px;
 }
 
-/* Tabs (pages) */
+/* -------------------- TABS (PAGES) -------------------- */
 .tab {
   display: none;
   padding: 2rem;
@@ -55,7 +53,14 @@ h1 {
   display: block;
 }
 
-/* Navigation bar */
+#tab-profile.tab.active-tab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* -------------------- NAVIGATION BAR -------------------- */
 .nav-bar {
   background-color: rgba(0, 0, 0, 0.11);
   backdrop-filter: blur(10px);
@@ -89,10 +94,11 @@ h1 {
   transform: scale(1.1);
 }
 
-/* Form styles */
+/* -------------------- FORM STYLES -------------------- */
 form {
   width: 100%;
 }
+
 fieldset {
   display: flex;
   flex-direction: column;
@@ -104,30 +110,33 @@ fieldset {
   margin-bottom: 20px;
   background-color: var(--bg-color);
 }
+
 legend {
   font-family: 'BBH Sans Hegarty', sans-serif;
   font-size: 30px;
   color: var(--font-color);
 }
+
 label {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
   display: block;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
-input, select {
+
+input,
+select {
   background-color: var(--bg-color);
   color: var(--font-color);
   font-family: 'Playfair Display', serif;
   padding: 6px;
   width: 90%;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 8px 0;
   border-radius: 6px;
   border: 1px solid #aaa;
   height: 6vh;
 }
+
 button {
   margin-top: 30px;
   height: 15vh;
@@ -141,6 +150,7 @@ button {
   font-size: 16px;
   transition: all 0.5s ease;
 }
+
 button:hover {
   background-color: var(--bg-color);
   border: 2px solid var(--accent-color);
@@ -162,13 +172,7 @@ button:hover {
   height: 12vh;
 }
 
-#tab-profile.tab.active-tab {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
+/* -------------------- PROFILE SECTION -------------------- */
 .profile-details {
   display: flex;
   flex-direction: column;
@@ -206,11 +210,16 @@ button:hover {
   width: 70vh;
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(rgb(208, 255, 0), rgba(208, 255, 0, 0.39), rgba(208, 255, 0, 0), transparent);
+  background: radial-gradient(
+    rgb(208, 255, 0),
+    rgba(208, 255, 0, 0.39),
+    rgba(208, 255, 0, 0),
+    transparent
+  );
   z-index: -1;
 }
 
-#tab-profile .profile-details .profile-icon { 
+#tab-profile .profile-details .profile-icon {
   height: 30vh;
   width: 30vh;
   display: grid;
