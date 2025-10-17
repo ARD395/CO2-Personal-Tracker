@@ -60,6 +60,14 @@ h1 {
   justify-content: space-evenly;
 }
 
+#tab-calculator.tab.active-tab {
+  display: flex;
+  flex: 2fr 1fr;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 /* -------------------- NAVIGATION BAR -------------------- */
 .nav-bar {
   background-color: rgba(0, 0, 0, 0.11);
@@ -170,6 +178,19 @@ button:hover {
 
 #filler {
   height: 12vh;
+}
+
+.earth-img {
+  position: sticky;    /* Stays in the normal flow but can stick */
+  align-self: flex-start;
+  top: 10vh;
+  z-index: 1;
+}
+
+.earth-img img {
+  width: 40vw;
+  height: auto;
+  pointer-events: none; /* Optional: so it doesn’t block clicks on other elements */
 }
 
 /* -------------------- PROFILE SECTION -------------------- */
