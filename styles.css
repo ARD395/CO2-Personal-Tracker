@@ -4,6 +4,7 @@
   --icon-color: rgb(211, 211, 211);
   --shadow-color: rgba(0, 0, 0, 0.3);
   --font-color: rgb(209, 209, 209);
+  --border-color: rgb(163, 163, 163);
 }
 
 /* Reset and base styles */
@@ -159,4 +160,84 @@ button:hover {
 
 #filler {
   height: 12vh;
+}
+
+#tab-profile.tab.active-tab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: rgba(245, 245, 220, 0.103);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  width: 40vw;
+  height: 70vh;
+}
+
+.profile-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 40vw;
+  background-color: rgba(245, 245, 220, 0.103);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.profile-tree img {
+  height: 50vh;
+  width: auto;
+}
+
+.profile-tree .circle {
+  height: 70vh;
+  width: 70vh;
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(rgb(208, 255, 0), rgba(208, 255, 0, 0.39), rgba(208, 255, 0, 0), transparent);
+  z-index: -1;
+}
+
+#tab-profile .profile-details .profile-icon { 
+  height: 30vh;
+  width: 30vh;
+  display: grid;
+  place-items: center;
+  border-radius: 10%;
+}
+
+#tab-profile .profile-details .profile-icon img {
+  width: 30vh;
+  height: auto;
+  border-radius: 90%;
+  border: 5px solid var(--border-color);
+}
+
+#tab-profile .profile-details .profile-name p {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+}
+
+#tab-profile .profile-details .profile-score h5 {
+  color: var(--border-color);
+  font-size: 15px;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+#tab-profile .profile-details .profile-score p {
+  font-size: 50px;
+  font-family: 'BBH Sans Hegarty', sans-serif;
 }
