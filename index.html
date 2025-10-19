@@ -94,8 +94,29 @@
     </section>
 
     <section id="tab-ai" class="tab">
-      <h1>Notifications</h1>
+      <div class="chat-container">
+        <div class="chat-header">
+          <h2><i class="fa-solid fa-robot"></i> EcoSathi AI Assistant</h2>
+          <p>Ask me anything about sustainability 🌿</p>
+        </div>
+
+        <div class="chat-box" id="chat-box">
+          <!-- Chat messages will appear here dynamically -->
+          <!-- Example static messages -->
+          <div class="message ai-message">
+            <div class="message-content">
+              Hello! I’m your EcoSathi AI. How may I assist you today?
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <input type="text" id="user-input" placeholder="Type your message..." />
+          <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
     </section>
+
 
     <section id="tab-profile" class="tab">
       <div class="profile-details">
