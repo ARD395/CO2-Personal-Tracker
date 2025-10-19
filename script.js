@@ -94,6 +94,8 @@ document.getElementById("result").innerHTML =
   <b>Eco Score:</b> ${scoreText}`;
 }
 
+
+
 // Function to send user input to backend and display the AI response
 document.getElementById("send-btn").addEventListener("click", async () => {
   const userInput = document.getElementById("user-input").value.trim();
@@ -134,3 +136,13 @@ document.getElementById("send-btn").addEventListener("click", async () => {
     console.error("Error:", error);
   }
 });
+
+
+
+
+const formattedReply = data.reply.replace(/\n/g, "<br>");
+chatBox.innerHTML += `
+  <div class="message ai-message">
+    <div class="message-content">${formattedReply}</div>
+  </div>
+`;

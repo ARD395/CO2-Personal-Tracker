@@ -342,6 +342,7 @@ button:hover {
 
 .message-content {
   font-size: 18px;
+  text-align: left;
 }
 
 .chat-input-area {
@@ -390,4 +391,8 @@ button:hover {
 .chat-box::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
+}
+
+.message-content {
+  white-space: pre-wrap; /* preserves line breaks and spaces */
 }
