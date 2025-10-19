@@ -93,3 +93,44 @@ document.getElementById("result").innerHTML =
  `<b>Your estimated daily CO₂ emission:</b> ${Math.round(totalCO2)} grams<br>
   <b>Eco Score:</b> ${scoreText}`;
 }
+
+// Function to send user input to backend and display the AI response
+document.getElementById("send-btn").addEventListener("click", async () => {
+  const userInput = document.getElementById("user-input").value.trim();
+  if (!userInput) return;
+
+  // Display user message
+  const chatBox = document.getElementById("chat-box");
+  chatBox.innerHTML += `
+    <div class="message user-message">
+      <div class="message-content">${userInput}</div>
+    </div>
+  `;
+  document.getElementById("user-input").value = "";
+
+  // Send message to backend API
+  try {
+    const response = await fetch("https://ecosathi-project-backend.vercel.app/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: userInput }),
+    });
+
+    const data = await response.json();
+
+    // Display AI message
+    chatBox.innerHTML += `
+      <div class="message ai-message">
+        <div class="message-content">${data.reply}</div>
+      </div>
+    `;
+    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+  } catch (error) {
+    chatBox.innerHTML += `
+      <div class="message ai-message">
+        <div class="message-content error">Error contacting AI service.</div>
+      </div>
+    `;
+    console.error("Error:", error);
+  }
+});
