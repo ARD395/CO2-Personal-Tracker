@@ -1,11 +1,14 @@
 :root {
-  --bg-color: rgba(0, 0, 60, 0.548);
-  --accent-color: rgb(197, 72, 0);
-  --icon-color: rgb(211, 211, 211);
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --font-color: rgb(209, 209, 209);
-  --border-color: rgb(163, 163, 163);
+  --bg-color: #00000060;            /* Soft cream backdrop – matches the sunlight */
+  --accent-color: #103600;        /* Fresh green accent – lively and natural */
+  --icon-color: #ffffff;          /* Muted blue-gray for balance */
+  --shadow-color: rgba(0, 0, 0, 0.15); /* Gentle shadow */
+  --font-color: rgb(95, 62, 10);          /* Dark gray for readability */
+  --secondary-font-color: rgb(235, 235, 235);
+  --border-color: #003307;        /* Pale green for soft outlines */
+  --hover-color: #51ff68;         /* Darker green for hover effects */
 }
+
 
 /* -------------------- RESET & BASE STYLES -------------------- */
 *,
@@ -18,12 +21,11 @@
 
 body {
   min-height: 100vh;
-  background-image: url(Images/bg.png);
+  background-image: url(Images/bg-pc.jpg);
   background-repeat: no-repeat;
-  background-size: center/cover;
+  background-size: cover;
   background-attachment: fixed;
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
   display: flex;
   flex-direction: column;
 }
@@ -76,7 +78,7 @@ h1 {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 8vh;
+  height: 10vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -85,7 +87,7 @@ h1 {
 
 /* Navigation icons */
 .nav-icon {
-  width: 4vh;
+  width: 6vh;
   height: auto;
   fill: var(--icon-color);
   cursor: pointer;
@@ -120,28 +122,32 @@ fieldset {
 }
 
 legend {
-  font-family: 'BBH Sans Hegarty', sans-serif;
-  font-size: 30px;
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
   color: var(--font-color);
 }
 
 label {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
+  color: var(--secondary-font-color);
   display: block;
+  font-weight: bold;
   margin: 20px 0;
+  margin-top: 1px;
 }
 
 input,
 select {
   background-color: var(--bg-color);
-  color: var(--font-color);
+  color: var(--secondary-font-color);
   font-family: 'Playfair Display', serif;
   padding: 6px;
   width: 90%;
   margin: 8px 0;
   border-radius: 6px;
-  border: 1px solid #aaa;
+  border-color: none;
   height: 6vh;
 }
 
@@ -281,31 +287,32 @@ button:hover {
   height: 80vh;
   width: 80vw;
   margin: 0 auto;
-  background-color: rgba(0, 0, 20, 0.6);
+  background-color: var(--bg-color);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   box-shadow: 0 0 15px var(--shadow-color);
   overflow: hidden;
-  color: var(--font-color);
+  color: var(--secondary-font-color);
 }
 
 .chat-header {
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-color);
   border-bottom: 1px solid var(--border-color);
 }
 
 .chat-header h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 40px;
-  color: var(--accent-color);
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
+  font-size: 45px;
+  color: var(--secondary-font-color);
 }
 
 .chat-header p {
   font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  color: var(--font-color);
+  font-size: 14px;
+  color: var(--secondary-font-color);
   margin-top: 0.3rem;
 }
 
@@ -357,7 +364,7 @@ button:hover {
   flex: 1;
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--border-color);
-  color: var(--font-color);
+  color: var(--secondary-font-color);
   font-family: 'Playfair Display', serif;
   font-size: 18px;
   padding: 0.8rem;
@@ -366,7 +373,7 @@ button:hover {
 }
 
 .chat-input-area input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--secondary-font-color);
 }
 
 .chat-input-area button {
@@ -381,7 +388,7 @@ button:hover {
 }
 
 .chat-input-area button:hover {
-  background-color: rgb(255, 98, 0);
+  background-color: var(--hover-color);
 }
 
 .chat-box::-webkit-scrollbar {
