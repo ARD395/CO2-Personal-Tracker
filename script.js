@@ -16,6 +16,8 @@ document.querySelectorAll('.nav-icon').forEach(icon => {
   });
 });
 
+
+
 // --- Popup Handling ---
 function showPopup(contentHTML) {
   document.getElementById("popupResult").innerHTML = contentHTML;
@@ -24,6 +26,8 @@ function showPopup(contentHTML) {
 function closePopup() {
   document.getElementById("resultPopup").style.display = "none";
 }
+
+
 
 // --- CO₂ Calculator ---
 function calculateCO2() {
@@ -38,6 +42,8 @@ function calculateCO2() {
   let segregate = document.getElementById("segregate").value;
   let lights = document.getElementById("lights").value;
 
+
+
   // --- Emission Factors ---
   let EF_elec = 713, EF_water = 0.15, EF_tree = 10000;
   let EF_walk = 0, EF_bike = 55, EF_car = 122, EF_bus = 80, EF_train = 45, EF_ev = 40;
@@ -49,6 +55,8 @@ function calculateCO2() {
   else if (transport === "Bus") EF_transport = EF_bus;
   else if (transport === "Train") EF_transport = EF_train;
   else if (transport === "Electric Vehicle") EF_transport = EF_ev;
+
+
 
   // --- CO₂ Calculation ---
   let dailyElecCO2 = (electricity / 30) * EF_elec;
@@ -64,6 +72,8 @@ function calculateCO2() {
   else if (lights === "Sometimes") totalCO2 *= 0.95;
   if (totalCO2 < 0) totalCO2 = 0;
 
+
+
   // --- Tier Message ---
   let scoreText = "";
   if (totalCO2 < 3000) scoreText = "🌿 Excellent (Very Low Emissions)";
@@ -71,6 +81,8 @@ function calculateCO2() {
   else if (totalCO2 < 9000) scoreText = "😐 Moderate (Room for Improvement)";
   else if (totalCO2 < 12000) scoreText = "⚠️ Poor (High Emissions)";
   else scoreText = "🚨 Very Poor (Very High Emissions)";
+
+
 
   // --- Result Object ---
   const result = {
@@ -92,6 +104,8 @@ function calculateCO2() {
     <p><b>Rating:</b> ${result.scoreText}</p>`);
 }
 
+
+
 // --- Table Rendering ---
 function renderHistoryTable() {
   const tableBody = document.querySelector("#historyTable tbody");
@@ -111,6 +125,8 @@ function renderHistoryTable() {
   });
 }
 
+
+
 // --- JSON Download ---
 function downloadJSONFile() {
   const data = localStorage.getItem("ecoHistory");
@@ -123,6 +139,8 @@ function downloadJSONFile() {
   URL.revokeObjectURL(url);
 }
 
+
+
 // --- Clear History ---
 function clearHistory() {
   if (confirm("Are you sure you want to delete your eco history?")) {
@@ -130,6 +148,7 @@ function clearHistory() {
     renderHistoryTable();
   }
 }
+
 
 
 // Function to send user input to backend and display the AI response
@@ -175,7 +194,7 @@ document.getElementById("send-btn").addEventListener("click", async () => {
 
 
 
-
+// Format AI reply with line breaks
 const formattedReply = data.reply.replace(/\n/g, "<br>");
 chatBox.innerHTML += `
   <div class="message ai-message">

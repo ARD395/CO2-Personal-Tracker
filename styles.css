@@ -10,6 +10,7 @@
 }
 
 
+
 /* -------------------- RESET & BASE STYLES -------------------- */
 *,
 *::before,
@@ -44,6 +45,8 @@ h1 {
   font-size: 70px;
 }
 
+
+
 /* -------------------- TABS (PAGES) -------------------- */
 .tab {
   display: none;
@@ -69,6 +72,8 @@ h1 {
   align-items: center;
   justify-content: space-evenly;
 }
+
+
 
 /* -------------------- NAVIGATION BAR -------------------- */
 .nav-bar {
@@ -104,6 +109,8 @@ h1 {
   fill: var(--accent-color);
   transform: scale(1.1);
 }
+
+
 
 /* -------------------- FORM STYLES -------------------- */
 form {
@@ -188,7 +195,7 @@ button:hover {
 }
 
 .earth-img {
-  position: sticky;    /* Stays in the normal flow but can stick */
+  position: sticky;  /* Stays in the normal flow but can stick */
   align-self: flex-start;
   top: 10vh;
   z-index: 1;
@@ -197,8 +204,9 @@ button:hover {
 .earth-img img {
   width: 40vw;
   height: auto;
-  pointer-events: none; /* Optional: so it doesn’t block clicks on other elements */
+  pointer-events: none;  /* Optional: so it doesn’t block clicks on other elements */
 }
+
 
 
 /* Popup box styling */
@@ -232,7 +240,6 @@ button:hover {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
-
 
 
 
@@ -315,7 +322,6 @@ button:hover {
   font-family: 'BBH Sans Hegarty', sans-serif;
 }
 
-
 /* ===== Eco History Table Styling ===== */
 #historyContainer {
   margin-top: 30px;
@@ -397,7 +403,6 @@ button:hover {
     padding: 8px;
   }
 }
-
 
 
 
