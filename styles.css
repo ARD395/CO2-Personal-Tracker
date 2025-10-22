@@ -567,44 +567,69 @@ button:hover {
   text-align: left;
 }
 
+/* --- Chat Input Area --- */
 .chat-input-area {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0.8rem 1rem;
   border-top: 1px solid var(--border-color);
   background-color: rgba(0, 0, 0, 0.3);
+  gap: 0.8rem;
+  box-sizing: border-box;
 }
 
+/* --- Input Box --- */
 .chat-input-area input {
   flex: 1;
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--border-color);
   color: var(--secondary-font-color);
   font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  padding: 0.8rem;
+  font-size: 16px;
+  padding: 0.7rem 1rem;
   border-radius: 10px;
   outline: none;
+  height: 46px; /* consistent height */
+  line-height: 1;
+  box-sizing: border-box;
 }
 
 .chat-input-area input::placeholder {
   color: var(--secondary-font-color);
 }
 
+/* --- Send Button --- */
 .chat-input-area button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--accent-color);
   border: none;
-  color: white;
-  padding: 0.8rem 1.2rem;
-  margin-left: 0.8rem;
+  color: #fff;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  width: 46px;  /* matches input height */
+  height: 46px; /* matches input height exactly */
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.chat-input-area button i {
+  pointer-events: none; /* avoids click issues */
+  transform: translateY(1px); /* fine vertical centering of icon */
 }
 
 .chat-input-area button:hover {
   background-color: var(--hover-color);
+  transform: scale(1.05);
 }
+
 
 .chat-box::-webkit-scrollbar {
   width: 8px;
