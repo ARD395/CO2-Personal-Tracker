@@ -1,12 +1,12 @@
 :root {
   --bg-color: #00000060;            /* Soft cream backdrop – matches the sunlight */
-  --accent-color: #103600;        /* Fresh green accent – lively and natural */
+  --accent-color: #134100;        /* Fresh green accent – lively and natural */
   --icon-color: #ffffff;          /* Muted blue-gray for balance */
   --shadow-color: rgba(0, 0, 0, 0.15); /* Gentle shadow */
   --font-color: rgb(95, 62, 10);          /* Dark gray for readability */
   --secondary-font-color: rgb(235, 235, 235);
   --border-color: #003307;        /* Pale green for soft outlines */
-  --hover-color: #51ff68;         /* Darker green for hover effects */
+  --hover-color: #002505;         /* Darker green for hover effects */
 }
 
 
@@ -35,7 +35,7 @@ main.app {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start; /* Aligns content to top, removes top gap */
 }
 
 h1 {
@@ -61,8 +61,12 @@ h1 {
 #tab-profile.tab.active-tab {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-start; /* Aligns profile card to top */
+  justify-content: space-around; /* Keeps horizontal spacing neat */
+  padding-top: 20px; /* Gentle breathing room */
+  gap: 30px; /* Balanced spacing between profile, table, and tree */
+  height: calc(100vh - 10vh); /* Ensures good viewport fit below navbar */
+  overflow-y: hidden; /* Prevents double scrolling */
 }
 
 #tab-calculator.tab.active-tab {
@@ -243,159 +247,242 @@ button:hover {
 
 
 
-/* -------------------- PROFILE SECTION -------------------- */
+/* ===== PROFILE SECTION LAYOUT ===== */
+#tab-profile.tab.active-tab {
+  display: flex;
+  flex-direction: row;
+  height: 85vh;
+  overflow: hidden;
+}
+
+/* Fixed left-side profile details */
 .profile-details {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+  gap: 1px;
+  width: 30%;
+  min-width: 280px;
+  height: 80vh;
+  padding: 30px 20px;
+  background-color: rgba(245, 245, 220, 0.12);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--border-color);
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+/* Scrollable right section (history + tree) */
+.profile-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.scroll-section {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  background-color: rgba(245, 245, 220, 0.103);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  width: 40vw;
-  height: 70vh;
+  overflow-y: auto;
+  max-height: 80vh; /* scrollable region */
+  padding-right: 10px;
 }
 
-.profile-tree {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 70vh;
-  width: 40vw;
-  background-color: rgba(245, 245, 220, 0.103);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-}
-
-.profile-tree img {
-  height: 50vh;
-  width: auto;
-}
-
-.profile-tree .circle {
-  height: 70vh;
-  width: 70vh;
-  position: absolute;
+/* Profile info styling */
+.profile-icon img {
+  width: 22vh;
+  height: 22vh;
   border-radius: 50%;
-  background: radial-gradient(
-    rgb(208, 255, 0),
-    rgba(208, 255, 0, 0.39),
-    rgba(208, 255, 0, 0),
-    transparent
-  );
-  z-index: -1;
-}
-
-#tab-profile .profile-details .profile-icon {
-  height: 30vh;
-  width: 30vh;
-  display: grid;
-  place-items: center;
-  border-radius: 10%;
-}
-
-#tab-profile .profile-details .profile-icon img {
-  width: 30vh;
-  height: auto;
-  border-radius: 90%;
   border: 5px solid var(--border-color);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-#tab-profile .profile-details .profile-name p {
-  font-size: 40px;
-  font-weight: bold;
+.profile-name p {
+  font-size: 2rem;
   font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--font-color);
 }
 
-#tab-profile .profile-details .profile-score h5 {
+.profile-score {
+  text-align: center;
+}
+
+.profile-score h5 {
   color: var(--border-color);
-  font-size: 15px;
-  font-family: 'Playfair Display', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 5px;
 }
 
-#tab-profile .profile-details .profile-score p {
-  font-size: 50px;
+.profile-score p {
+  font-size: 2.5rem;
+  color: var(--font-color);
   font-family: 'BBH Sans Hegarty', sans-serif;
 }
 
-/* ===== Eco History Table Styling ===== */
+.profile-details button {
+  background-color: var(--accent-color);
+  border: none;
+  padding: 12px 20px;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 80%;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+.profile-details button:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+
+/* Tree section styling */
+.profile-tree {
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-tree img {
+  height: 40vh;
+  width: auto;
+  margin-bottom: 10px;
+}
+
+.profile-tree .circle {
+  display: none; /* Simplify for cleaner mobile look */
+}
+
+/* Make scroll smooth and hidden scrollbar */
+.profile-scroll {
+  scrollbar-width: none;
+}
+.profile-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== History Table Styling ===== */
 #historyContainer {
-  margin-top: 30px;
+  margin-top: 20px;
+  width: 90%;
+  max-width: 900px;
   text-align: center;
-  padding: 10px;
+  background-color: rgba(245, 245, 220, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  box-shadow: 0 0 15px var(--shadow-color);
+  padding: 25px 15px;
+  color: var(--secondary-font-color);
 }
 
 #historyContainer h3 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #2f684e; /* Natural green tone */
+  font-size: 1.6em;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+  color: var(--font-color);
+  text-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
+/* Table Layout */
 #historyTable {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
   border-collapse: collapse;
-  font-family: "Segoe UI", Arial, sans-serif;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  background-color: #ffffff;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 /* Header Styling */
 #historyTable thead {
-  background: linear-gradient(90deg, #3ca374, #2f684e);
-  color: white;
+  background: linear-gradient(90deg, var(--accent-color), #266b1d);
+  color: #fff;
 }
 
 #historyTable th {
-  padding: 12px 10px;
+  padding: 14px 10px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.95em;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Row Styling */
 #historyTable td {
-  padding: 10px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--font-color);
+  font-weight: bold;
 }
 
 #historyTable tr:nth-child(even) {
-  background-color: #f7fdf8;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 #historyTable tr:hover {
-  background-color: #e3f6eb;
-  transition: background-color 0.3s ease;
+  background-color: rgba(81, 255, 104, 0.15);
+  transition: 0.3s ease;
+}
+
+/* Smooth fade-in for table */
+#historyTable {
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Buttons Below Table */
 #historyContainer button {
-  background-color: #3ca374;
-  color: white;
+  background-color: var(--accent-color);
+  color: #fff;
   border: none;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 6px;
-  margin: 10px 5px;
+  margin-top: 20px;
   cursor: pointer;
-  font-size: 0.95em;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1em;
+  transition: all 0.3s ease;
 }
 
 #historyContainer button:hover {
-  background-color: #2f684e;
+  background-color: var(--hover-color);
   transform: scale(1.05);
 }
 
-/* Responsive Table */
+/* Responsive Design */
 @media (max-width: 768px) {
-  #historyTable {
+  #historyContainer {
     width: 100%;
+    padding: 15px;
+  }
+
+  #historyTable {
     font-size: 0.9em;
   }
 
@@ -403,6 +490,7 @@ button:hover {
     padding: 8px;
   }
 }
+
 
 
 

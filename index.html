@@ -140,28 +140,30 @@
         <button onclick="clearHistory()">Clear History</button>
       </div>
 
-      <div id="historyContainer">
-        <h3>Your Eco History</h3>
-        <table id="historyTable" border="1" cellspacing="0" cellpadding="5">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>CO₂ (g/day)</th>
-              <th>Transport</th>
-              <th>Electricity (kWh)</th>
-              <th>Water (L)</th>
-              <th>Trees</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+      <div class="scroll-section profile-scroll">
+        <div id="historyContainer">
+          <h3>Your Eco History</h3>
+          <table id="historyTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>CO₂ (g/day)</th>
+                <th>Transport</th>
+                <th>Electricity (kWh)</th>
+                <th>Water (L)</th>
+                <th>Trees</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
 
-      <div class="profile-tree">
-        <img src="Images/tree.png" alt="tree">
-          <div class="circle"></div>
+        <div class="profile-tree">
+          <img src="Images/tree.png" alt="tree">
+        </div>
       </div>
     </section>
+
 
 
 
