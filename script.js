@@ -228,11 +228,11 @@ new Chart(ctx, {
   options: {
     responsive: true,
     scales: {
-      yAxes: [{ticks: {min: 0, max:20000, stepSize: 2000}, fontColor: '#0000FF',}]
+      yAxes: [{ticks: {min: 0, max:20000, stepSize: 2000},}]
     },
-    legend: {                     // <-- add this section
+    legend: {                  
       labels: {
-        fontSize: 18,             // font size of “Daily CO₂ (g)”
+        fontSize: 18,          
       }
     },
   }
