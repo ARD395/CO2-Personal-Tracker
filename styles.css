@@ -323,7 +323,7 @@ button:hover {
   margin-bottom: 5px;
 }
 
-.profile-score p {
+.profile-score #lastCalculatedCO2 {
   font-size: 2.5rem;
   color: var(--font-color);
   font-family: 'BBH Sans Hegarty', sans-serif;

@@ -82,6 +82,9 @@ function calculateCO2() {
   else if (totalCO2 < 12000) scoreText = "⚠️ Poor (High Emissions)";
   else scoreText = "🚨 Very Poor (Very High Emissions)";
 
+  // Update Profile Score Display
+  document.getElementById("lastCalculatedCO2").innerText = Math.round(totalCO2);
+
 
 
   // ----- Creating Result Object to Store in JSON -----
