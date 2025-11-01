@@ -137,6 +137,7 @@ function renderHistoryTable() {
 function renderCO2Graph() {
   // Get the HTML canvas by its id 
   ctx = document.getElementById("co2Chart");
+  Chart.defaults.global.defaultFontColor = 'rgba(54, 34, 1, 1)';
   // Example datasets for X and Y-axes
   const history = JSON.parse(localStorage.getItem("ecoHistory")) || [];
 
@@ -164,17 +165,15 @@ new Chart(ctx, {
   options: {
     responsive: true,
     scales: {
-      yAxes: [{ticks: {min: 0, max:20000, stepSize: 2000},}],
-      xAxes: {
-        title: {
-          display: true,
-          text: 'Date'
-        }
+      yAxes: [{ticks: {min: 0, max:20000, stepSize: 2000}, fontColor: '#0000FF',}]
+    },
+    legend: {                     // <-- add this section
+      labels: {
+        fontSize: 18,             // font size of “Daily CO₂ (g)”
       }
-    }
+    },
   }
 });
-
 }
 
 
