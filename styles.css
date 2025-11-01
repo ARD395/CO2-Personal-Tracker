@@ -116,6 +116,49 @@ h1 {
 
 
 
+/* -------------------- NOTIFICATION STYLES -------------------- */
+
+.notification-section {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.notification-section h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  color: #2e4600;
+  margin-bottom: 10px;
+}
+
+.notification-section button {
+  width: 45px;
+  height: 45px;
+  border-radius: 90%;
+  border: none;
+  margin: 5px;
+  background-color: #4caf50; /* eco green */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+}
+
+.notification-section button:hover {
+  background-color: #388e3c;
+  transform: scale(1.1);
+}
+
+.notification-section button:active {
+  transform: scale(0.95);
+  background-color: #2e7d32;
+}
+
+
+
 /* -------------------- FORM STYLES -------------------- */
 form {
   width: 100%;

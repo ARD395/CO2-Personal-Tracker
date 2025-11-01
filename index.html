@@ -140,6 +140,16 @@
         </div>
         <button onclick="downloadJSONFile()">Download JSON</button>
         <button onclick="clearHistory()">Clear History</button>
+
+
+        <div class="notification-section">
+          <button type="button" onclick="requestNotificationPermission()" title="Enable Notifications">
+            <i class="fa-solid fa-bell"></i>
+          </button>
+          <button type="button" onclick="sendRandomNotification()" title="Test Notification">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
       </div>
 
       <div class="scroll-section profile-scroll">

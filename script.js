@@ -22,6 +22,69 @@ document.querySelectorAll('.nav-icon').forEach(icon => {
 
 
 
+
+
+// ----- Eco Notifications Feature -----
+
+const ecoFacts = [
+  "A single tree can absorb about 21 kg of CO₂ per year.",
+  "Switching to LED bulbs can reduce your carbon footprint by up to 40 kg annually.",
+  "Shortening your shower by 2 minutes can save up to 40 liters of water each time.",
+  "Using public transport once a week can cut emissions by over 400 kg per year.",
+  "Planting native trees supports biodiversity and reduces CO₂ levels.",
+  "Turning off devices completely can save 10% of household electricity.",
+  "An electric vehicle emits 50% less CO₂ than a petrol car over its lifetime.",
+  "Composting organic waste reduces methane emissions from landfills.",
+  "Producing 1 kg of beef emits nearly 27 kg of CO₂ — try a plant-based meal!",
+  "Using reusable bottles and cups can save 100+ plastic items per person yearly."
+];
+
+// Ask for permission to send notifications
+function requestNotificationPermission() {
+  if (!("Notification" in window)) {
+    alert("Sorry, your browser does not support notifications.");
+    return;
+  }
+
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      console.log("Eco notifications enabled.");
+      startEcoNotifications();
+    } else {
+      console.log("Notifications denied or ignored by user.");
+    }
+  });
+}
+
+// Send a random eco fact as notification
+function sendRandomNotification() {
+  if (!("Notification" in window)) return;
+  if (Notification.permission !== "granted") return;
+
+  const randomFact = ecoFacts[Math.floor(Math.random() * ecoFacts.length)];
+  const notification = new Notification("🌱 EcoSathi Tip", {
+    body: randomFact,
+    icon: "Images/earth.png"
+  });
+
+  notification.onclick = () => window.focus();
+}
+
+// Automatically show eco tips periodically
+function startEcoNotifications() {
+  sendRandomNotification(); // Show one immediately
+  setInterval(sendRandomNotification, 720000); // Every 2 hours
+}
+
+// Automatically ask permission on page load
+window.addEventListener("load", () => {
+  requestNotificationPermission();
+});
+
+
+
+
+
 // ----- Result Popup Handling -----
 function showPopup(contentHTML) {
   document.getElementById("popupResult").innerHTML = contentHTML;
