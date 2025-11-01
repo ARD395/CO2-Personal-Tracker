@@ -96,6 +96,8 @@ function closePopup() {
 
 
 
+
+
 // ----- Calculate CO2 Emissions and EcoScore -----
 function calculateCO2() {
   // Collect inputs
@@ -178,6 +180,8 @@ function calculateCO2() {
 
 
 
+
+
 // ----- Table Rendering -----
 function renderHistoryTable() {
   const tableBody = document.querySelector("#historyTable tbody");
@@ -241,6 +245,8 @@ new Chart(ctx, {
 
 
 
+
+
 // ----- JSON Download -----
 function downloadJSONFile() {
   const data = localStorage.getItem("ecoHistory");
@@ -255,6 +261,8 @@ function downloadJSONFile() {
 
 
 
+
+
 // ----- Clear History -----
 function clearHistory() {
   if (confirm("Are you sure you want to delete your eco history?")) {
@@ -262,6 +270,8 @@ function clearHistory() {
     renderHistoryTable();
   }
 }
+
+
 
 
 
@@ -305,6 +315,8 @@ document.getElementById("send-btn").addEventListener("click", async () => {
     console.error("Error:", error);
   }
 });
+
+
 
 
 
