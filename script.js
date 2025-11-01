@@ -1,4 +1,4 @@
-// --- Tab Switching (unchanged) ---
+// ----- Tab Switching -----
 function switchTabs(tabId) {
   document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active-tab'));
   document.querySelectorAll('.nav-icon').forEach(icon => icon.classList.remove('active-icon'));
@@ -18,7 +18,7 @@ document.querySelectorAll('.nav-icon').forEach(icon => {
 
 
 
-// --- Popup Handling ---
+// ----- Result Popup Handling -----
 function showPopup(contentHTML) {
   document.getElementById("popupResult").innerHTML = contentHTML;
   document.getElementById("resultPopup").style.display = "block";
@@ -29,7 +29,7 @@ function closePopup() {
 
 
 
-// --- CO₂ Calculator ---
+// ----- Calculate CO2 Emissions and EcoScore -----
 function calculateCO2() {
   // Collect inputs
   let electricity = parseFloat(document.getElementById("electricity").value);
@@ -45,9 +45,9 @@ function calculateCO2() {
 
 
   // --- Emission Factors ---
-  let EF_elec = 713, EF_water = 0.15, EF_tree = 10000;
-  let EF_walk = 0, EF_bike = 55, EF_car = 122, EF_bus = 80, EF_train = 45, EF_ev = 40;
+  let EF_elec = 757, EF_water = 0.4, EF_tree = 1800;
 
+  let EF_walk = 0, EF_bike = 60, EF_car = 210, EF_bus = 15, EF_train = 50, EF_ev = 110;
   let EF_transport = 0;
   if (transport === "Walking / Bicycle") EF_transport = EF_walk;
   else if (transport === "Two-Wheeler") EF_transport = EF_bike;
@@ -59,17 +59,17 @@ function calculateCO2() {
 
 
   // --- CO₂ Calculation ---
-  let dailyElecCO2 = (electricity / 30) * EF_elec;
+  let dailyElecCO2 = (electricity/30) * EF_elec;
   let waterCO2 = water * EF_water;
   let travelCO2 = distance * EF_transport;
-  let treeOffset = trees * (EF_tree / 365);
+  let treeOffset = trees * (EF_tree/30);
   let totalCO2 = dailyElecCO2 + waterCO2 + travelCO2 - treeOffset;
 
-  if (solar === "Yes") totalCO2 *= 0.9;
-  if (segregate === "Yes") totalCO2 *= 0.95;
-  if (reuse === "Yes") totalCO2 *= 0.95;
-  if (lights === "Always") totalCO2 *= 0.9;
-  else if (lights === "Sometimes") totalCO2 *= 0.95;
+  if (solar === "Yes") totalCO2 -= (83000/30);
+  if (segregate === "Yes") totalCO2 -= (10000/30);
+  if (reuse === "Yes") totalCO2 -= (6300/30);
+  if (lights === "Always") totalCO2 -= (2200/30);
+  else if (lights === "Sometimes") totalCO2 -= ((2200/3)/30);
   if (totalCO2 < 0) totalCO2 = 0;
 
 
@@ -84,7 +84,7 @@ function calculateCO2() {
 
 
 
-  // --- Result Object ---
+  // ----- Creating Result Object to Store in JSON -----
   const result = {
     date: new Date().toLocaleString(),
     electricity, water, distance, transport, trees,
@@ -99,14 +99,16 @@ function calculateCO2() {
   localStorage.setItem("ecoHistory", JSON.stringify(history));
 
   // Show Popup
-  showPopup(`<h3>Your Eco Score</h3>
+  showPopup(
+    `<h3>Your Eco Score</h3>
     <p><b>Estimated Daily CO₂:</b> ${result.totalCO2} g</p>
-    <p><b>Rating:</b> ${result.scoreText}</p>`);
+    <p><b>Rating:</b> ${result.scoreText}</p>`
+  );
 }
 
 
 
-// --- Table Rendering ---
+// ----- Table Rendering -----
 function renderHistoryTable() {
   const tableBody = document.querySelector("#historyTable tbody");
   tableBody.innerHTML = "";
@@ -127,7 +129,7 @@ function renderHistoryTable() {
 
 
 
-// --- JSON Download ---
+// ----- JSON Download -----
 function downloadJSONFile() {
   const data = localStorage.getItem("ecoHistory");
   const blob = new Blob([data], { type: "application/json" });
@@ -141,7 +143,7 @@ function downloadJSONFile() {
 
 
 
-// --- Clear History ---
+// ----- Clear History -----
 function clearHistory() {
   if (confirm("Are you sure you want to delete your eco history?")) {
     localStorage.removeItem("ecoHistory");
