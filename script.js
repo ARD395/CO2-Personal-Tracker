@@ -6,7 +6,11 @@ function switchTabs(tabId) {
   if (targetTab) targetTab.classList.add('active-tab');
   const targetIcon = document.querySelector(`.nav-icon[data-tab="${tabId}"]`);
   if (targetIcon) targetIcon.classList.add('active-icon');
-  if (tabId === "tab-profile") renderHistoryTable();
+  if (tabId === "tab-profile") {
+    renderHistoryTable();
+    setTimeout(renderCO2Graph, 100); // Give it 100ms to become visible
+  }
+  if (tabId === "tab-profile") renderCO2Graph();
 }
 
 document.querySelectorAll('.nav-icon').forEach(icon => {
@@ -89,7 +93,7 @@ function calculateCO2() {
 
   // ----- Creating Result Object to Store in JSON -----
   const result = {
-    date: new Date().toLocaleString(),
+    date: new Date().toISOString(),
     electricity, water, distance, transport, trees,
     reuse, solar, segregate, lights,
     totalCO2: Math.round(totalCO2),
@@ -128,6 +132,49 @@ function renderHistoryTable() {
       <td>${entry.trees}</td>`;
     tableBody.appendChild(row);
   });
+}
+
+function renderCO2Graph() {
+  // Get the HTML canvas by its id 
+  ctx = document.getElementById("co2Chart");
+  // Example datasets for X and Y-axes
+  const history = JSON.parse(localStorage.getItem("ecoHistory")) || [];
+
+  const dates = history.map(entry => {
+    const d = new Date(entry.date);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  });     //Stays on the X-axis
+
+  const co2Values = history.map(entry => Number(entry.totalCO2));    //Stays on the Y-axis 
+
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: dates,
+    datasets: [{
+      label: 'Daily CO₂ (g)',
+      data: co2Values,
+      backgroundColor: '#331900ff',
+      borderColor: '#0e5300ff',
+      fill: false,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      yAxes: [{ticks: {min: 0, max:20000, stepSize: 2000},}],
+      xAxes: {
+        title: {
+          display: true,
+          text: 'Date'
+        }
+      }
+    }
+  }
+});
+
 }
 
 

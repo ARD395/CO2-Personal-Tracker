@@ -6,6 +6,8 @@
   <title>🌿 EcoSathi - Carbon Footprint Calculator</title>
   <script src="https://kit.fontawesome.com/ef6f3bed2b.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -157,6 +159,11 @@
             <tbody></tbody>
           </table>
         </div>
+
+        <div style="width: 80%; max-width: 600px; margin: 20px auto;">
+          <canvas id="co2Chart" width="600" height="300" style="background:#f8f8f8; border:1px solid #ccc;"></canvas>
+        </div>
+
 
         <div class="profile-tree">
           <img src="Images/tree.png" alt="tree">
