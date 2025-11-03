@@ -197,11 +197,16 @@
             <ul id="pledgeList"></ul>
           </div>
 
-          <!-- Water Reminder -->
-          <div class="impact-card tall-card">
-            <h2>💧 Water Saver</h2>
-            <p>Gentle reminders to save water every 3 hours.</p>
-            <button onclick="sendWaterReminder()">Test Reminder</button>
+          <!-- Personal Eco Reminder -->
+          <div class="impact-card tall-card" id="ecoReminder">
+            <h2>⏰ Eco Reminder</h2>
+            <p>Set a personal reminder to stay eco-conscious!</p>
+            
+            <input type="text" id="reminderText" placeholder="E.g. Water the plants 🌿" />
+            <input type="time" id="reminderTime" />
+            <button onclick="addReminder()">Set Reminder</button>
+
+            <ul id="reminderList"></ul>
           </div>
 
           <!-- Eco Tip Sharing -->
@@ -209,6 +214,13 @@
             <h2>📤 Share Eco Tip</h2>
             <p>Spread a random eco fact with friends!</p>
             <button onclick="shareEcoTip()">Share Tip</button>
+          </div>
+
+          <!-- Water Reminder -->
+          <div class="impact-card small-card">
+            <h2>💧 Water Saver</h2>
+            <p>Gentle reminders to save water every 3 hours.</p>
+            <button onclick="sendWaterReminder()">Test Reminder</button>
           </div>
 
           <!-- Mood Tracker -->
@@ -221,18 +233,6 @@
               <button onclick="setMood('😔')">😔</button>
             </div>
             <canvas id="moodChart" width="280" height="150"></canvas>
-          </div>
-
-          <!-- Personal Eco Reminder -->
-          <div class="impact-card" id="ecoReminder">
-            <h2>⏰ Eco Reminder</h2>
-            <p>Set a personal reminder to stay eco-conscious!</p>
-            
-            <input type="text" id="reminderText" placeholder="E.g. Water the plants 🌿" />
-            <input type="time" id="reminderTime" />
-            <button onclick="addReminder()">Set Reminder</button>
-
-            <ul id="reminderList"></ul>
           </div>
         </div>
         <div id="filler"></div>
