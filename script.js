@@ -168,7 +168,14 @@ function calculateCO2() {
 
   // ----- Creating Result Object to Store in JSON -----
   const result = {
-    date: new Date().toISOString(),
+    date: new Date().toLocaleString('en-US', {
+      weekday: 'long',    // e.g. Monday
+      year: 'numeric',    // e.g. 2025
+      month: 'long',      // e.g. November
+      day: 'numeric',     // e.g. 3
+      hour: '2-digit',    // e.g. 07
+      minute: '2-digit',  // e.g. 45
+    }),
     electricity, water, distance, transport, trees,
     reuse, solar, segregate, lights,
     totalCO2: Math.round(totalCO2),
@@ -183,6 +190,7 @@ function calculateCO2() {
   // Show Popup
   showPopup(
     `<h3>Your Eco Score</h3>
+    <p><b>Date:</b> ${result.date}</p>
     <p><b>Estimated Daily CO₂:</b> ${result.totalCO2} g</p>
     <p><b>Rating:</b> ${result.scoreText}</p>`
   );
