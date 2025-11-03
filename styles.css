@@ -462,10 +462,10 @@ button:hover {
 }
 
 /* Headings inside Bento Boxes */
-.impact-card h3 {
+.impact-card h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
-  font-size: 25px;
+  font-size: 30px;
   color: var(--accent-color);
   margin-bottom: 10px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.2);
@@ -473,7 +473,8 @@ button:hover {
 
 .impact-card p {
   font-size: 1rem;
-  color: var(--secondary-font-color);
+  color: var(--font-color);
+  font-weight: 700;
   margin-bottom: 8px;
 }
 
@@ -485,6 +486,8 @@ button:hover {
   border-radius: 8px;
   padding: 8px 14px;
   margin-top: 8px;
+  height: 8vh;
+  width: 10vw;
   font-family: 'Playfair Display', serif;
   cursor: pointer;
   transition: 0.3s ease;
@@ -551,6 +554,7 @@ button:hover {
 /* Bento Box Variants */
 .wide-card {
   grid-column: span 2;
+  grid-row: span 2;
 }
 
 .tall-card {
@@ -560,6 +564,75 @@ button:hover {
 .small-card {
   min-height: 180px;
 }
+
+#challengeList {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* no gaps between items */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#challengeList li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'Playfair Display', serif;
+  color: var(--font-color);
+  transition: background 0.3s ease;
+}
+
+#challengeList li:last-child {
+  border-bottom: none;
+}
+
+#challengeList li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#challengeList li.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Text takes 2 parts of the row */
+#challengeList li p {
+  font: "Playfair Display", serif;
+  font-weight: 700;
+  color: var(--accent-color);
+  flex: 2;
+  margin: 0;
+  font-size: 18px;
+  text-align: left;
+}
+
+/* Radio button is small and right-aligned */
+#challengeList li input[type="radio"] {
+  flex: 1;
+  max-width: 25px;
+  transform: scale(1.2);
+  accent-color: var(--accent-color);
+  cursor: pointer;
+  align-self: center;
+  justify-self: flex-end;
+}
+
+/* streak counter styling */
+#dailyEcoChallenge #streakDisplay {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #2e7d32;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+}
+
+
 
 /* Responsive for small screens */
 @media (max-width: 768px) {

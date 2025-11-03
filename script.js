@@ -332,45 +332,71 @@ chatBox.innerHTML += `
 // ----- IMPACT TAB FEATURES -----
 
 // 1️⃣ Daily Eco Challenge
-const challenges = [
-  "Refill your water bottle instead of buying plastic.",
-  "Turn off one unused appliance today.",
-  "Eat one plant-based meal today.",
-  "Walk or bike instead of using your vehicle.",
-  "Pick up 5 pieces of litter in your neighbourhood.",
-  "Avoid single-use plastic for a day.",
-  "Spend 10 minutes learning about climate change."
-];
+const challengeList = document.getElementById("challengeList");
+const ecoStreakDisplay = document.getElementById("ecoStreak");
 
-function loadDailyChallenge() {
+document.addEventListener("DOMContentLoaded", () => {
+  loadChallenges();
+  resetChallengesIfNewDay();
+});
+
+function toggleChallenge(input) {
+  const li = input.closest("li");
+  li.classList.toggle("completed", input.checked);
+  saveChallenges();
+
+  if (areAllChallengesDone()) {
+    incrementStreak();
+  }
+}
+
+function saveChallenges() {
+  const states = Array.from(challengeList.querySelectorAll("input")).map(
+    (input) => input.checked
+  );
+  localStorage.setItem("challengeStates", JSON.stringify(states));
+  localStorage.setItem("lastCompletedDate", new Date().toDateString());
+}
+
+function loadChallenges() {
+  const savedStates = JSON.parse(localStorage.getItem("challengeStates"));
+  if (savedStates) {
+    const inputs = challengeList.querySelectorAll("input");
+    inputs.forEach((input, i) => {
+      input.checked = savedStates[i];
+      input.closest("li").classList.toggle("completed", input.checked);
+    });
+  }
+  ecoStreakDisplay.textContent = localStorage.getItem("ecoStreak") || 0;
+}
+
+function areAllChallengesDone() {
+  return Array.from(challengeList.querySelectorAll("input")).every(
+    (input) => input.checked
+  );
+}
+
+function incrementStreak() {
+  let streak = parseInt(localStorage.getItem("ecoStreak") || "0");
+  streak++;
+  localStorage.setItem("ecoStreak", streak);
+  ecoStreakDisplay.textContent = streak;
+}
+
+function resetChallengesIfNewDay() {
+  const lastDate = localStorage.getItem("lastCompletedDate");
   const today = new Date().toDateString();
-  const stored = JSON.parse(localStorage.getItem("dailyChallenge"));
-  if (stored && stored.date === today) {
-    document.getElementById("dailyChallenge").textContent = stored.text;
-  } else {
-    const random = challenges[Math.floor(Math.random() * challenges.length)];
-    localStorage.setItem("dailyChallenge", JSON.stringify({ date: today, text: random, done: false }));
-    document.getElementById("dailyChallenge").textContent = random;
-  }
-  updateStreak();
-}
 
-function markChallengeDone() {
-  const stored = JSON.parse(localStorage.getItem("dailyChallenge"));
-  if (!stored.done) {
-    stored.done = true;
-    localStorage.setItem("dailyChallenge", JSON.stringify(stored));
-    let streak = Number(localStorage.getItem("ecoStreak") || 0) + 1;
-    localStorage.setItem("ecoStreak", streak);
-    updateStreak();
-    alert("Great job! You completed today's challenge 🌿");
+  if (lastDate !== today) {
+    const inputs = challengeList.querySelectorAll("input");
+    inputs.forEach((input) => {
+      input.checked = false;
+      input.closest("li").classList.remove("completed");
+    });
+    localStorage.setItem("challengeStates", JSON.stringify([]));
   }
 }
 
-function updateStreak() {
-  const streak = localStorage.getItem("ecoStreak") || 0;
-  document.getElementById("streakDisplay").textContent = `Current streak: ${streak} day(s) 🔥`;
-}
 
 // 2️⃣ Eco Pledge Board
 function addPledge() {
