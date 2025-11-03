@@ -434,6 +434,21 @@ button:hover {
   align-items: center;
 }
 
+.impact-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px;
+  color: var(--font-color);
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.impact-intro {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-align: center;
+}
+
 .impact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -632,6 +647,26 @@ button:hover {
   text-align: center;
 }
 
+#pledgeBoard input {
+  color: var(--font-color);
+}
+
+#pledgeBoard ul{
+  margin-top: 10px;
+}
+
+#pledgeBoard ul li{
+  text-align: left;
+  color: var(--hover-color);
+}
+
+.mood-buttons button {
+  background: none;
+}
+
+.mood-buttons button:hover {
+  background: none;
+}
 
 
 /* Responsive for small screens */

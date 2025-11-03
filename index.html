@@ -174,7 +174,7 @@
           </div>
 
           <!-- Water Reminder -->
-          <div class="impact-card small-card">
+          <div class="impact-card tall-card">
             <h2>💧 Water Saver</h2>
             <p>Gentle reminders to save water every 3 hours.</p>
             <button onclick="sendWaterReminder()">Test Reminder</button>
@@ -193,16 +193,8 @@
             <p id="offsetText">Calculate your footprint to see offset goals.</p>
           </div>
 
-          <!-- Community Message Board -->
-          <div class="impact-card wide-card">
-            <h2>💬 Community Message Board</h2>
-            <input type="text" id="messageInput" placeholder="Share your eco thoughts..." />
-            <button onclick="postMessage()">Post</button>
-            <ul id="messageList"></ul>
-          </div>
-
           <!-- Mood Tracker -->
-          <div class="impact-card tall-card">
+          <div class="impact-card wide-card">
             <h2>☀️ Eco Mood Tracker</h2>
             <div class="mood-buttons">
               <button onclick="setMood('😊')">😊</button>
@@ -213,7 +205,7 @@
             <canvas id="moodChart" width="280" height="150"></canvas>
           </div>
         </div>
-
+        <div id="filler"></div>
       </div>
     </section>
 

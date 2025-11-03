@@ -412,7 +412,7 @@ function addPledge() {
 function renderPledges() {
   const list = document.getElementById("pledgeList");
   const pledges = JSON.parse(localStorage.getItem("ecoPledges")) || [];
-  list.innerHTML = pledges.map(p => `<li>${p}</li>`).join("");
+  list.innerHTML = pledges.map(p => `<li>• ${p}</li>`).join("");
 }
 
 // 3️⃣ Water Saver Reminder
