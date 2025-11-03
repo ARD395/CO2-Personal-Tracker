@@ -19,6 +19,9 @@
   <main class="app">
     <!-- Page Sections -->
     <section id="tab-calculator" class="tab active-tab">
+
+      
+
       <div class="form">
         <form id="ecoForm">
 
@@ -95,10 +98,20 @@
 
       <div id="filler"></div>
       </div>
-      <div class="earth-img">
-        <img src="Images/earth.png" alt="earth">
+
+      <div class="gk-section">
+        <div id="did-you-know-section">
+          <h3>🌿 Did You Know?</h3>
+          <p id="ecoFact"></p>
+          <button onclick="showEcoFact()">New Fact</button>
+        </div>
+
+        <div id="facts-section">
+          <h3>🌍 Amazing Sustainability Facts</h3>
+          <p id="sustainFact"></p>
+          <button onclick="showSustainFact()">New Fact</button>
+        </div>
       </div>
-      
     </section>
 
     <section id="tab-ai" class="tab">

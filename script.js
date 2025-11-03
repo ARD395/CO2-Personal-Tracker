@@ -182,6 +182,92 @@ function calculateCO2() {
 
 
 
+//#region Facts Display
+
+const ecoAwarenessFacts = [
+  "Turning off lights when not in use can cut your electricity bill by 10%.",
+  "One reusable water bottle can save over 1,500 plastic bottles per year.",
+  "Recycling one aluminum can saves enough energy to run a TV for three hours.",
+  "If every household replaced one incandescent bulb with an LED, billions of kilowatts could be saved annually.",
+  "A dripping tap can waste over 5,000 litres of water in a year.",
+  "Composting reduces the amount of waste sent to landfills and enriches the soil.",
+  "Using public transport just once a week significantly reduces your carbon footprint.",
+  "An idle car engine for 10 minutes wastes enough fuel to drive several kilometres.",
+  "Planting trees helps combat climate change and improves air quality.",
+  "Every piece of plastic ever made still exists somewhere on Earth.",
+  "Producing recycled paper uses 70% less energy than producing new paper.",
+  "Air-drying clothes can save hundreds of kilograms of CO₂ each year.",
+  "Recycling a glass bottle saves enough energy to power a computer for 30 minutes.",
+  "If everyone recycled their newspapers, millions of trees could be saved annually.",
+  "Meat production contributes to more greenhouse gases than all transport combined.",
+  "Turning off the tap while brushing your teeth can save up to 6 litres of water per minute.",
+  "Walking or cycling short distances improves health and reduces pollution.",
+  "Buying local produce reduces transportation emissions and supports farmers.",
+  "Every tonne of recycled paper saves 17 trees and over 26,000 litres of water.",
+  "Fast fashion is the second largest polluter after the oil industry.",
+  "Switching to a laptop uses up to 80% less energy than a desktop computer.",
+  "Reusing shopping bags can prevent hundreds of plastic bags from polluting oceans.",
+  "Electronic waste is one of the fastest-growing waste streams globally.",
+  "Producing one cotton shirt can require over 2,700 litres of water — enough for one person’s drinking needs for two years.",
+  "Over 90% of the world’s seabirds have plastic in their stomachs.",
+  "Eating more plant-based meals can cut your carbon footprint almost in half.",
+  "Air pollution kills more people globally each year than tobacco smoking.",
+  "Deforestation destroys an area roughly the size of a football field every second.",
+  "Only about 9% of all plastic waste ever produced has been recycled.",
+  "You have the power to change the world by changing just one daily habit."
+];
+
+const sustainabilityFacts = [
+  "A mature tree can absorb more than 20 kilograms of carbon dioxide every year.",
+  "Solar power could provide enough energy to power the entire Earth many times over.",
+  "Bamboo can grow up to 3 feet in a single day — and absorbs more CO₂ than most trees.",
+  "Wind energy has become the cheapest source of new power in many parts of the world.",
+  "Recycling just one plastic bottle can save enough energy to power a light bulb for six hours.",
+  "Tesla’s Gigafactories are designed to run entirely on renewable energy.",
+  "Vertical gardens can reduce city temperatures and improve air quality.",
+  "Some species of mushrooms can digest plastic waste naturally.",
+  "Oceans absorb about 30% of the carbon dioxide produced by humans.",
+  "Algae can produce 30 times more energy per acre than traditional biofuel crops.",
+  "A single beehive can pollinate up to 300 million flowers a day.",
+  "Hydroelectric power produces 16% of the world’s total electricity.",
+  "There are over 1 billion bicycles in use worldwide — the most sustainable vehicle ever created.",
+  "Some countries recycle over 90% of their plastic bottles — proving zero waste is possible.",
+  "Every ton of recycled steel saves 1.8 barrels of oil and 2.5 tonnes of iron ore.",
+  "Composting organic waste can reduce landfill volume by up to 30%.",
+  "Electric vehicles emit up to 70% less CO₂ over their lifetime than petrol cars.",
+  "Cities with more trees are up to 7°C cooler during summer heatwaves.",
+  "Recycled aluminum retains 100% of its quality, no matter how many times it’s reused.",
+  "Sweden recycles almost 99% of its household waste.",
+  "Some modern buildings use rainwater harvesting systems to supply all their water needs.",
+  "Green roofs can lower energy costs by up to 40%.",
+  "Biodegradable plastics made from corn starch can break down in months instead of centuries.",
+  "Wind turbines now power over 400 million homes globally.",
+  "Solar rooftops could generate 25% of the world’s electricity demand.",
+  "Seagrass meadows capture carbon 35 times faster than tropical rainforests.",
+  "Urban farms can produce enough vegetables to feed entire neighbourhoods.",
+  "Hydrogen fuel cells emit only water and warm air as by-products.",
+  "Recycling rates are increasing globally thanks to youth-led movements.",
+  "The future is circular — sustainability is not a trend, but a necessity."
+];
+
+function showEcoFact() {
+  const fact = ecoAwarenessFacts[Math.floor(Math.random() * ecoAwarenessFacts.length)];
+  document.getElementById("ecoFact").textContent = fact;
+}
+
+function showSustainFact() {
+  const fact = sustainabilityFacts[Math.floor(Math.random() * sustainabilityFacts.length)];
+  document.getElementById("sustainFact").textContent = fact;
+}
+
+// Show one of each when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  showEcoFact();
+  showSustainFact();
+});
+
+//#endregion
+
 //#region Table and Graph Rendering
 
 // Table Rendering
@@ -522,3 +608,5 @@ function resetImpactTab() {
 
   alert("All eco progress has been reset 🌿");
 }
+
+//#endregion

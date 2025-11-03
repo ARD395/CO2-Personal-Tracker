@@ -8,7 +8,12 @@
   --font-color: rgb(95, 62, 10);                  /* Dark gray for readability */
   --secondary-font-color: rgb(235, 235, 235);
   --border-color: #003307;                        /* Pale green for soft outlines */
-  --hover-color: #002505;                         /* Darker green for hover effects */
+  --hover-color: #002505;                         /* Deep green for hover effects */
+  
+  --yellow-bg: rgb(255, 245, 110) ;
+  --green-bg: rgb(163, 255, 110) ;
+  --yellow-text: rgb(54, 29, 0) ;
+  --green-text: rgb(0, 41, 2) ;
 }
 
 /*#endregion*/
@@ -269,6 +274,86 @@ button:hover {
 
 
 
+/*#region Popup Box Styles*/
+
+.gk-section {
+  flex: 1;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: var(--background-alt);
+  padding: 10px;
+}
+
+#did-you-know-section {
+  flex: 1;
+  background-color: var(--yellow-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 0 15px var(--shadow-color);
+  color: var(--yellow-text);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  overflow-y: auto;
+}
+
+#did-you-know-section h3 {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+#did-you-know-section p {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#did-you-know-section button {
+  background-color: var(--yellow-text);
+  font-weight: 500;
+  height: 10vh;
+  font-size: 20px;
+}
+
+#facts-section {
+  flex: 1;
+  background-color: var(--green-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 0 15px var(--shadow-color);
+  color: var(--green-text);
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  overflow-y: auto;
+}
+
+#facts-section h3 {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+#facts-section p {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#facts-section button {
+  background-color: var(--green-text);
+  font-weight: 500;
+  height: 10vh;
+  font-size: 20px;
+}
+
+/*#endregion*/
 /*#region AI Chat Tab Styles*/
 
 #tab-ai .chat-container {
