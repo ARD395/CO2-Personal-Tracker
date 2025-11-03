@@ -29,19 +29,29 @@ document.querySelectorAll('.nav-icon').forEach(icon => {
 
 //#region Eco Notifications Feature
 
-// ----- Eco Notifications Feature -----
-const ecoFacts = [
-  "A single tree can absorb about 21 kg of CO₂ per year.",
-  "Switching to LED bulbs can reduce your carbon footprint by up to 40 kg annually.",
-  "Shortening your shower by 2 minutes can save up to 40 liters of water each time.",
-  "Using public transport once a week can cut emissions by over 400 kg per year.",
-  "Planting native trees supports biodiversity and reduces CO₂ levels.",
-  "Turning off devices completely can save 10% of household electricity.",
-  "An electric vehicle emits 50% less CO₂ than a petrol car over its lifetime.",
-  "Composting organic waste reduces methane emissions from landfills.",
-  "Producing 1 kg of beef emits nearly 27 kg of CO₂ — try a plant-based meal!",
-  "Using reusable bottles and cups can save 100+ plastic items per person yearly."
+const ecoReminders = [
+  "Turn off the lights when you leave the room.",
+  "Unplug chargers and devices not in use to save energy.",
+  "Carry a reusable water bottle instead of buying plastic ones.",
+  "Reduce paper waste — go digital whenever possible.",
+  "Use public transport, carpool, or cycle to lower carbon emissions.",
+  "Sort and recycle your household waste properly.",
+  "Plant a tree or nurture a small garden at home.",
+  "Avoid fast fashion — choose sustainable clothing.",
+  "Take shorter showers to conserve water.",
+  "Bring your own bags when shopping.",
+  "Buy local and seasonal produce to cut transport emissions.",
+  "Compost kitchen scraps instead of throwing them away.",
+  "Repair or donate items instead of discarding them.",
+  "Use energy-efficient bulbs and appliances.",
+  "Keep reusable cutlery or straws with you for meals on the go.",
+  "Switch to eco-friendly cleaning products.",
+  "Set your thermostat a few degrees lower in winter and higher in summer.",
+  "Educate friends and family about sustainable habits.",
+  "Choose products with minimal or recyclable packaging.",
+  "Spend time in nature and appreciate the environment you’re protecting."
 ];
+
 
 // Ask for permission to send notifications
 function requestNotificationPermission() {
@@ -65,8 +75,8 @@ function sendRandomNotification() {
   if (!("Notification" in window)) return;
   if (Notification.permission !== "granted") return;
 
-  const randomFact = ecoFacts[Math.floor(Math.random() * ecoFacts.length)];
-  const notification = new Notification("🌱 EcoSathi Tip", {
+  const randomFact = ecoFacts[Math.floor(Math.random() * ecoReminders.length)];
+  const notification = new Notification("🌱 EcoSathi Reminder", {
     body: randomFact,
     icon: "Images/earth.png"
   });
