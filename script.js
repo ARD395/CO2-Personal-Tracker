@@ -1,3 +1,5 @@
+//#region Tab Switching Logic
+
 // ----- Tab Switching -----
 function switchTabs(tabId) {
   document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active-tab'));
@@ -11,6 +13,7 @@ function switchTabs(tabId) {
     setTimeout(renderCO2Graph, 100); // Give it 100ms to become visible
   }
   if (tabId === "tab-profile") renderCO2Graph();
+  if (tabId === "tab-impact") initImpactTab();
 }
 
 document.querySelectorAll('.nav-icon').forEach(icon => {
@@ -20,12 +23,13 @@ document.querySelectorAll('.nav-icon').forEach(icon => {
   });
 });
 
+//#endregion
 
 
 
+//#region Eco Notifications Feature
 
 // ----- Eco Notifications Feature -----
-
 const ecoFacts = [
   "A single tree can absorb about 21 kg of CO₂ per year.",
   "Switching to LED bulbs can reduce your carbon footprint by up to 40 kg annually.",
@@ -81,22 +85,27 @@ window.addEventListener("load", () => {
   requestNotificationPermission();
 });
 
+//#endregion
 
 
 
+//#region Result Popup Handling
 
 // ----- Result Popup Handling -----
 function showPopup(contentHTML) {
   document.getElementById("popupResult").innerHTML = contentHTML;
   document.getElementById("resultPopup").style.display = "block";
 }
+
 function closePopup() {
   document.getElementById("resultPopup").style.display = "none";
 }
 
+//#endregion
 
 
 
+//#region CO2 Calculation and History Management
 
 // ----- Calculate CO2 Emissions and EcoScore -----
 function calculateCO2() {
@@ -111,8 +120,6 @@ function calculateCO2() {
   let segregate = document.getElementById("segregate").value;
   let lights = document.getElementById("lights").value;
 
-
-
   // --- Emission Factors ---
   let EF_elec = 757, EF_water = 0.4, EF_tree = 1800;
 
@@ -125,23 +132,18 @@ function calculateCO2() {
   else if (transport === "Train") EF_transport = EF_train;
   else if (transport === "Electric Vehicle") EF_transport = EF_ev;
 
-
-
   // --- CO₂ Calculation ---
   let dailyElecCO2 = (electricity/30) * EF_elec;
   let waterCO2 = water * EF_water;
   let travelCO2 = distance * EF_transport;
   let treeOffset = trees * (EF_tree/30);
   let totalCO2 = dailyElecCO2 + waterCO2 + travelCO2 - treeOffset;
-
   if (solar === "Yes") totalCO2 -= (83000/30);
   if (segregate === "Yes") totalCO2 -= (10000/30);
   if (reuse === "Yes") totalCO2 -= (6300/30);
   if (lights === "Always") totalCO2 -= (2200/30);
   else if (lights === "Sometimes") totalCO2 -= ((2200/3)/30);
   if (totalCO2 < 0) totalCO2 = 0;
-
-
 
   // --- Tier Message ---
   let scoreText = "";
@@ -153,8 +155,6 @@ function calculateCO2() {
 
   // Update Profile Score Display
   document.getElementById("lastCalculatedCO2").innerText = Math.round(totalCO2);
-
-
 
   // ----- Creating Result Object to Store in JSON -----
   const result = {
@@ -178,16 +178,17 @@ function calculateCO2() {
   );
 }
 
+//#endregion
 
 
 
+//#region Table and Graph Rendering
 
-// ----- Table Rendering -----
+// Table Rendering
 function renderHistoryTable() {
   const tableBody = document.querySelector("#historyTable tbody");
   tableBody.innerHTML = "";
   const history = JSON.parse(localStorage.getItem("ecoHistory")) || [];
-
   history.forEach(entry => {
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -201,21 +202,18 @@ function renderHistoryTable() {
   });
 }
 
+// Render Graph
 function renderCO2Graph() {
-  // Get the HTML canvas by its id 
   ctx = document.getElementById("co2Chart");
   Chart.defaults.global.defaultFontColor = 'rgba(54, 34, 1, 1)';
-  // Example datasets for X and Y-axes
   const history = JSON.parse(localStorage.getItem("ecoHistory")) || [];
-
   const dates = history.map(entry => {
     const d = new Date(entry.date);
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-  });     //Stays on the X-axis
+  });
+  const co2Values = history.map(entry => Number(entry.totalCO2));
 
-  const co2Values = history.map(entry => Number(entry.totalCO2));    //Stays on the Y-axis 
-
-
+// New Chart Instance
 new Chart(ctx, {
   type: 'line',
   data: {
@@ -243,11 +241,13 @@ new Chart(ctx, {
 });
 }
 
+//#endregion
 
 
 
+//#region JSON Download and Clear History
 
-// ----- JSON Download -----
+// JSON Download
 function downloadJSONFile() {
   const data = localStorage.getItem("ecoHistory");
   const blob = new Blob([data], { type: "application/json" });
@@ -259,11 +259,7 @@ function downloadJSONFile() {
   URL.revokeObjectURL(url);
 }
 
-
-
-
-
-// ----- Clear History -----
+// Clear History
 function clearHistory() {
   if (confirm("Are you sure you want to delete your eco history?")) {
     localStorage.removeItem("ecoHistory");
@@ -271,9 +267,11 @@ function clearHistory() {
   }
 }
 
+//#endregion
 
 
 
+//#region AI Chat Integration
 
 // Function to send user input to backend and display the AI response
 document.getElementById("send-btn").addEventListener("click", async () => {
@@ -317,9 +315,6 @@ document.getElementById("send-btn").addEventListener("click", async () => {
 });
 
 
-
-
-
 // Format AI reply with line breaks
 const formattedReply = data.reply.replace(/\n/g, "<br>");
 chatBox.innerHTML += `
@@ -328,9 +323,11 @@ chatBox.innerHTML += `
   </div>
 `;
 
+//#endregion
 
 
 
+//#region Impact Tab Features
 
 // ----- IMPACT TAB FEATURES -----
 
@@ -344,6 +341,7 @@ const challenges = [
   "Avoid single-use plastic for a day.",
   "Spend 10 minutes learning about climate change."
 ];
+
 function loadDailyChallenge() {
   const today = new Date().toDateString();
   const stored = JSON.parse(localStorage.getItem("dailyChallenge"));
@@ -356,6 +354,7 @@ function loadDailyChallenge() {
   }
   updateStreak();
 }
+
 function markChallengeDone() {
   const stored = JSON.parse(localStorage.getItem("dailyChallenge"));
   if (!stored.done) {
@@ -367,6 +366,7 @@ function markChallengeDone() {
     alert("Great job! You completed today's challenge 🌿");
   }
 }
+
 function updateStreak() {
   const streak = localStorage.getItem("ecoStreak") || 0;
   document.getElementById("streakDisplay").textContent = `Current streak: ${streak} day(s) 🔥`;
@@ -382,6 +382,7 @@ function addPledge() {
   input.value = "";
   renderPledges();
 }
+
 function renderPledges() {
   const list = document.getElementById("pledgeList");
   const pledges = JSON.parse(localStorage.getItem("ecoPledges")) || [];
@@ -429,6 +430,7 @@ function postMessage() {
   input.value = "";
   renderMessages();
 }
+
 function renderMessages() {
   const list = document.getElementById("messageList");
   const messages = JSON.parse(localStorage.getItem("ecoMessages")) || [];
@@ -442,6 +444,7 @@ function setMood(icon) {
   localStorage.setItem("ecoMoods", JSON.stringify(moods.slice(-7)));
   renderMoodChart();
 }
+
 function renderMoodChart() {
   const ctx = document.getElementById("moodChart").getContext("2d");
   const moods = JSON.parse(localStorage.getItem("ecoMoods")) || [];
@@ -465,11 +468,4 @@ function initImpactTab() {
   renderMoodChart();
 }
 
-// Extend tab switching to include Impact tab
-document.querySelectorAll('.nav-icon').forEach(icon => {
-  icon.addEventListener('click', () => {
-    const targetTab = icon.getAttribute('data-tab');
-    switchTabs(targetTab);
-    if (targetTab === "tab-impact") initImpactTab();
-  });
-});
+//#endregion
