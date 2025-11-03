@@ -1165,3 +1165,206 @@ button:hover {
 
 /*#endregion*/
 
+
+
+/* ==============================
+   RESPONSIVE DESIGN
+   ============================== */
+
+/* For tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .calculator {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar ul {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tab-calculator,
+  .tab-ai,
+  .tab-impact,
+  .tab-profile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .navbar h1 {
+    font-size: 20px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .impact-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-content {
+    padding: 15px;
+  }
+
+  .tab-calculator,
+  .tab-ai,
+  .tab-impact,
+  .tab-profile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tab-profile .profile-details .profile-icon img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .calculator button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .ai-assistant textarea {
+    height: 80px;
+  }
+}
+
+/* For very small phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar ul {
+    gap: 5px;
+  }
+
+  .impact-card {
+    padding: 15px;
+  }
+
+  .tab-calculator,
+  .tab-ai,
+  .tab-impact,
+  .tab-profile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .calculator input,
+  .calculator select,
+  .calculator button {
+    padding: 8px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+}
+
+/* ==============================
+   STACK ELEMENTS VERTICALLY ON SMALL SCREENS
+   ============================== */
+
+/* Applies to mobile screens */
+@media (max-width: 768px) {
+
+  /* General container and layout fix */
+  .container,
+  .tab-content,
+  section,
+  div {
+    display: flex;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Navbar adjustments */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* Carbon calculator fields */
+  .calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .calculator input,
+  .calculator select,
+  .calculator button {
+    width: 100%;
+  }
+
+  /* AI assistant layout */
+  .ai-assistant {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Eco impact cards */
+  .impact-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .impact-card {
+    width: 100%;
+  }
+
+  /* Profile section layout */
+  .profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile img {
+    margin-bottom: 10px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 10px;
+  }
+}
+
