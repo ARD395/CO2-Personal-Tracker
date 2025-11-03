@@ -176,12 +176,11 @@ select {
   width: 90%;
   margin: 8px 0;
   border-radius: 6px;
-  border-color: none;
+  border: 2px solid var(--border-color);
   height: 6vh;
 }
 
 button {
-  margin-top: 30px;
   height: 15vh;
   font-family: 'Playfair Display', serif;
   background-color: var(--accent-color);
@@ -190,13 +189,14 @@ button {
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 700;
   transition: all 0.5s ease;
 }
 
 button:hover {
-  background-color: var(--bg-color);
-  border: 2px solid var(--accent-color);
+  background-color: var(--hover-color);
+  transform: scale(1.1);
   transition: all 0.5s ease;
 }
 
@@ -504,8 +504,8 @@ button:hover {
   border-radius: 8px;
   padding: 8px 14px;
   margin-top: 8px;
-  height: 8vh;
-  width: 10vw;
+  height: 10vh;
+  width: 12vw;
   font-family: 'Playfair Display', serif;
   cursor: pointer;
   transition: 0.3s ease;
@@ -687,6 +687,14 @@ button:hover {
   background: none;
 }
 
+#resetImpact{
+  position: absolute;
+  height: 7vh;
+  width: 10vw;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+}
 
 /* Responsive for small screens */
 @media (max-width: 768px) {

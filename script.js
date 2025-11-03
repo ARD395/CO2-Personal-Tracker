@@ -331,25 +331,28 @@ chatBox.innerHTML += `
 
 // ----- IMPACT TAB FEATURES -----
 
-// 1️⃣ Daily Eco Challenge
+// ----- DAILY ECO CHALLENGE LOGIC -----
 const challengeList = document.getElementById("challengeList");
 const ecoStreakDisplay = document.getElementById("ecoStreak");
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadChallenges();
   resetChallengesIfNewDay();
+  loadChallenges();
 });
 
+// Toggle a single challenge
 function toggleChallenge(input) {
   const li = input.closest("li");
   li.classList.toggle("completed", input.checked);
   saveChallenges();
 
+  // If all are done, increment streak once per day
   if (areAllChallengesDone()) {
     incrementStreak();
   }
 }
 
+// Save current challenge states
 function saveChallenges() {
   const states = Array.from(challengeList.querySelectorAll("input")).map(
     (input) => input.checked
@@ -358,31 +361,40 @@ function saveChallenges() {
   localStorage.setItem("lastCompletedDate", new Date().toDateString());
 }
 
+// Load saved challenge states and apply CSS
 function loadChallenges() {
-  const savedStates = JSON.parse(localStorage.getItem("challengeStates"));
-  if (savedStates) {
-    const inputs = challengeList.querySelectorAll("input");
-    inputs.forEach((input, i) => {
-      input.checked = savedStates[i];
-      input.closest("li").classList.toggle("completed", input.checked);
-    });
-  }
+  const savedStates = JSON.parse(localStorage.getItem("challengeStates")) || [];
+  const inputs = challengeList.querySelectorAll("input");
+
+  inputs.forEach((input, i) => {
+    input.checked = savedStates[i] || false;
+    input.closest("li").classList.toggle("completed", input.checked);
+  });
+
   ecoStreakDisplay.textContent = localStorage.getItem("ecoStreak") || 0;
 }
 
+// Check if all challenges are complete
 function areAllChallengesDone() {
   return Array.from(challengeList.querySelectorAll("input")).every(
     (input) => input.checked
   );
 }
 
+// Increment streak
 function incrementStreak() {
-  let streak = parseInt(localStorage.getItem("ecoStreak") || "0");
+  const today = new Date().toDateString();
+  const lastDate = localStorage.getItem("lastCompletedDate");
+
+  // Prevent multiple increments in one day
+  if (lastDate === today) return;
+
+  let streak = parseInt(localStorage.getItem("ecoStreak") || "0", 10);
   streak++;
   localStorage.setItem("ecoStreak", streak);
-  ecoStreakDisplay.textContent = streak;
 }
 
+// Reset all challenges if it’s a new day
 function resetChallengesIfNewDay() {
   const lastDate = localStorage.getItem("lastCompletedDate");
   const today = new Date().toDateString();
@@ -492,6 +504,23 @@ function initImpactTab() {
   renderPledges();
   renderMessages();
   renderMoodChart();
+}
+
+// ----- RESET IMPACT TAB -----
+function resetImpactTab() {
+  if (confirm("Are you sure you want to reset all your eco progress?")) {
+    localStorage.removeItem("challengeStates");
+    localStorage.removeItem("ecoStreak");
+    localStorage.removeItem("lastCompletedDate");
+
+    challengeList.querySelectorAll("input").forEach((input) => {
+      input.checked = false;
+      input.closest("li").classList.remove("completed");
+    });
+
+    ecoStreakDisplay.textContent = "0";
+    alert("All eco challenges and streaks have been reset 🌿");
+  }
 }
 
 //#endregion
