@@ -75,7 +75,7 @@ function sendRandomNotification() {
   if (!("Notification" in window)) return;
   if (Notification.permission !== "granted") return;
 
-  const randomFact = ecoFacts[Math.floor(Math.random() * ecoReminders.length)];
+  const randomFact = ecoReminders[Math.floor(Math.random() * ecoReminders.length)];
   const notification = new Notification("🌱 EcoSathi Reminder", {
     body: randomFact,
     icon: "Images/earth.png"
@@ -536,28 +536,51 @@ function sendWaterReminder() {
 setInterval(sendWaterReminder, 10800000); // every 3 hours
 
 // 4️⃣ Eco Tip Sharing
+// ----- SHARE ECO TIP (copy to clipboard version) -----
+
 function shareEcoTip() {
-  const randomTip = challenges[Math.floor(Math.random() * challenges.length)];
-  if (navigator.share) {
-    navigator.share({ title: "EcoSathi Tip 🌱", text: randomTip });
-  } else {
-    alert(randomTip);
-  }
-}
+  // Combine facts and "did you know" lists
+  const facts = [
+    "Every ton of recycled paper saves 17 trees 🌳.",
+    "LED bulbs use 80% less energy than incandescent lights 💡.",
+    "A running tap wastes up to 6 litres of water per minute 🚰.",
+    "Coral reefs support over 25% of marine species 🐠.",
+    "Composting reduces landfill waste by up to 30% 🌾.",
+    "Turning off electronics overnight saves up to 10% energy ⚡.",
+    "One reusable bottle can replace 167 single-use bottles per year 🧴.",
+    "Public transport cuts carbon emissions by 45% compared to driving 🚍.",
+    "Planting just one tree can absorb about 22 kg of CO₂ per year 🌳.",
+    "A four-minute shower uses about 40 litres of water 🚿."
+  ];
 
-// 5️⃣ Carbon Offset Tracker
-function updateOffsetDisplay(value = 0) {
-  document.getElementById("offsetText").textContent =
-    `You’d need approximately ${Math.ceil(value / 1800)} tree(s) to offset your daily footprint.`;
-}
+  const didYouKnows = [
+    "Did you know? Recycling one glass bottle saves enough energy to power a computer for 25 minutes 💻.",
+    "Did you know? Only 9% of all plastic ever made has been recycled ♻️.",
+    "Did you know? Bees are responsible for pollinating one-third of our food 🌸.",
+    "Did you know? 80% of ocean pollution comes from land-based sources 🌊.",
+    "Did you know? One mature tree can cool the air by up to 10°C 🌳.",
+    "Did you know? If every household replaced one light bulb with an LED, billions of kWh could be saved yearly 💡.",
+    "Did you know? Producing meat creates up to 10× more CO₂ than plants 🌱.",
+    "Did you know? Air drying clothes saves energy and extends fabric life ☀️.",
+    "Did you know? Fast fashion is responsible for 10% of global carbon emissions 👕.",
+    "Did you know? Walking or cycling just 1 km instead of driving prevents 250g of CO₂ 🚶‍♀️."
+  ];
 
-// Hook into your CO2 calculator result
-const oldCalculate = calculateCO2;
-calculateCO2 = function() {
-  oldCalculate();
-  const last = JSON.parse(localStorage.getItem("ecoHistory"))?.slice(-1)[0];
-  if (last) updateOffsetDisplay(last.totalCO2);
-};
+  // Merge both lists
+  const allTips = [...facts, ...didYouKnows];
+
+  // Pick a random one
+  const randomTip = allTips[Math.floor(Math.random() * allTips.length)];
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(randomTip)
+    .then(() => {
+      alert(`✅ Copied to clipboard:\n\n"${randomTip}"`);
+    })
+    .catch(() => {
+      alert("❌ Could not copy to clipboard — please try again.");
+    });
+}
 
 // 7️⃣ Eco Mood Tracker
 function setMood(icon) {
