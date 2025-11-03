@@ -291,84 +291,157 @@ button:hover {
 
 
 /* --- IMPACT TAB STYLES --- */
+/* --- BENTO GRID DESIGN FOR IMPACT TAB --- */
+
 .impact-container {
-  width: 90%;
-  max-width: 800px;
-  margin: auto;
-  padding: 10px;
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.impact-heading {
-  text-align: center;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 2rem;
-  color: #1b5e20;
-  margin-bottom: 5px;
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
-.impact-intro {
-  text-align: center;
-  margin-bottom: 15px;
-  color: #2e4600;
-}
-
+/* Individual Bento Cards */
 .impact-card {
-  background: #f4fff5;
-  border-radius: 15px;
-  padding: 15px;
-  margin: 10px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: rgba(245, 245, 220, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  color: var(--font-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
 }
 
+.impact-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Headings inside Bento Boxes */
 .impact-card h3 {
-  color: #2e7d32;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.impact-card p {
+  font-size: 1rem;
+  color: var(--secondary-font-color);
   margin-bottom: 8px;
 }
 
+/* Buttons inside Cards */
 .impact-card button {
-  background-color: #4caf50;
+  background-color: var(--accent-color);
   color: #fff;
   border: none;
-  padding: 6px 12px;
   border-radius: 8px;
+  padding: 8px 14px;
+  margin-top: 8px;
+  font-family: 'Playfair Display', serif;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s ease;
 }
 
 .impact-card button:hover {
-  background-color: #388e3c;
+  background-color: var(--hover-color);
+  transform: scale(1.05);
 }
 
+/* Inputs & Lists */
 .impact-card input {
-  width: 80%;
+  width: 90%;
   padding: 6px;
-  margin: 5px 0;
-  border: 1px solid #c8e6c9;
-  border-radius: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(0,0,0,0.2);
+  color: var(--secondary-font-color);
+  margin: 6px 0;
+  text-align: center;
 }
 
 .impact-card ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-top: 5px;
+  max-height: 100px;
+  overflow-y: auto;
 }
 
 .impact-card li {
-  background: #e8f5e9;
-  margin: 4px 0;
-  padding: 6px;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: var(--secondary-font-color);
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  transition: 0.3s;
 }
 
+.impact-card li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mood Tracker Buttons */
 .mood-buttons button {
   width: 40px;
   height: 40px;
-  margin: 3px;
   border-radius: 50%;
   border: none;
-  font-size: 1.2rem;
+  margin: 5px;
+  font-size: 1.3rem;
+  background-color: var(--accent-color);
+  color: #fff;
   cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s;
 }
+
+.mood-buttons button:hover {
+  transform: scale(1.1);
+  background-color: var(--hover-color);
+}
+
+/* Bento Box Variants */
+.wide-card {
+  grid-column: span 2;
+}
+
+.tall-card {
+  grid-row: span 2;
+}
+
+.small-card {
+  min-height: 180px;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .impact-heading {
+    font-size: 60px;
+  }
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+  .wide-card, .tall-card {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
 
 
 

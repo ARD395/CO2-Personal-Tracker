@@ -126,68 +126,74 @@
     </section>
 
     <section id="tab-impact" class="tab">
-      <div class="impact-container scroll-section">
+      <div class="impact-container">
 
         <h2 class="impact-heading">🌍 Eco Impact Hub</h2>
-        <p class="impact-intro">Small actions, big difference — join daily challenges and share your eco spirit!</p>
+        <p class="impact-intro">
+          Explore daily challenges, pledges, and mindful eco activities that make a difference.
+        </p>
 
-        <!-- Daily Eco Challenge -->
-        <div class="impact-card">
-          <h3>🌱 Daily Eco Challenge</h3>
-          <p id="dailyChallenge"></p>
-          <button onclick="markChallengeDone()">Mark Done ✅</button>
-          <p id="streakDisplay"></p>
-        </div>
-
-        <!-- Eco Pledge Board -->
-        <div class="impact-card">
-          <h3>🤝 Eco Pledge Board</h3>
-          <input type="text" id="pledgeInput" placeholder="Write your eco pledge..." />
-          <button onclick="addPledge()">Add Pledge</button>
-          <ul id="pledgeList"></ul>
-        </div>
-
-        <!-- Water Saver Reminder -->
-        <div class="impact-card">
-          <h3>💧 Water Saver Reminder</h3>
-          <p>EcoSathi will remind you to save water every 3 hours 💦</p>
-          <button onclick="sendWaterReminder()">Test Reminder</button>
-        </div>
-
-        <!-- Eco Tip Sharing -->
-        <div class="impact-card">
-          <h3>📤 Share an Eco Tip</h3>
-          <button onclick="shareEcoTip()">Share Random Tip</button>
-        </div>
-
-        <!-- Carbon Offset Tracker -->
-        <div class="impact-card">
-          <h3>🌳 Carbon Offset Tracker</h3>
-          <p id="offsetText">Calculate your footprint to see your offset goals.</p>
-        </div>
-
-        <!-- Community Message Board -->
-        <div class="impact-card">
-          <h3>💬 Community Message Board</h3>
-          <input type="text" id="messageInput" placeholder="Share a thought..." />
-          <button onclick="postMessage()">Post</button>
-          <ul id="messageList"></ul>
-        </div>
-
-        <!-- Eco Mood Tracker -->
-        <div class="impact-card">
-          <h3>☀️ Eco Mood Tracker</h3>
-          <div class="mood-buttons">
-            <button onclick="setMood('😊')">😊</button>
-            <button onclick="setMood('🌿')">🌿</button>
-            <button onclick="setMood('😐')">😐</button>
-            <button onclick="setMood('😔')">😔</button>
+        <div class="impact-grid">
+          <!-- Daily Eco Challenge -->
+          <div class="impact-card wide-card">
+            <h3>🌱 Daily Eco Challenge</h3>
+            <p id="dailyChallenge"></p>
+            <button onclick="markChallengeDone()">Mark Done ✅</button>
+            <p id="streakDisplay"></p>
           </div>
-          <canvas id="moodChart" width="300" height="150"></canvas>
+
+          <!-- Pledge Board -->
+          <div class="impact-card">
+            <h3>🤝 Eco Pledge Board</h3>
+            <input type="text" id="pledgeInput" placeholder="Write your eco pledge..." />
+            <button onclick="addPledge()">Add</button>
+            <ul id="pledgeList"></ul>
+          </div>
+
+          <!-- Water Reminder -->
+          <div class="impact-card small-card">
+            <h3>💧 Water Saver</h3>
+            <p>Gentle reminders to save water every 3 hours.</p>
+            <button onclick="sendWaterReminder()">Test Reminder</button>
+          </div>
+
+          <!-- Eco Tip Sharing -->
+          <div class="impact-card small-card">
+            <h3>📤 Share Eco Tip</h3>
+            <p>Spread a random eco fact with friends!</p>
+            <button onclick="shareEcoTip()">Share Tip</button>
+          </div>
+
+          <!-- Carbon Offset -->
+          <div class="impact-card">
+            <h3>🌳 Carbon Offset Tracker</h3>
+            <p id="offsetText">Calculate your footprint to see offset goals.</p>
+          </div>
+
+          <!-- Community Message Board -->
+          <div class="impact-card wide-card">
+            <h3>💬 Community Message Board</h3>
+            <input type="text" id="messageInput" placeholder="Share your eco thoughts..." />
+            <button onclick="postMessage()">Post</button>
+            <ul id="messageList"></ul>
+          </div>
+
+          <!-- Mood Tracker -->
+          <div class="impact-card tall-card">
+            <h3>☀️ Eco Mood Tracker</h3>
+            <div class="mood-buttons">
+              <button onclick="setMood('😊')">😊</button>
+              <button onclick="setMood('🌿')">🌿</button>
+              <button onclick="setMood('😐')">😐</button>
+              <button onclick="setMood('😔')">😔</button>
+            </div>
+            <canvas id="moodChart" width="280" height="150"></canvas>
+          </div>
         </div>
 
       </div>
     </section>
+
 
     <section id="tab-profile" class="tab">
       <div class="profile-details">
