@@ -647,7 +647,7 @@ button:hover {
 }
 
 /* Radio button is small and right-aligned */
-#challengeList li input[type="radio"] {
+#challengeList li input[type="checkbox"] {
   flex: 1;
   max-width: 25px;
   transform: scale(1.2);
