@@ -460,6 +460,9 @@ button:hover {
 
 /* Individual Bento Cards */
 .impact-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  place-items: center;
   background: rgba(245, 245, 220, 0.15);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-color);
@@ -529,7 +532,6 @@ button:hover {
   list-style: none;
   padding: 0;
   margin-top: 5px;
-  max-height: 100px;
   overflow-y: auto;
 }
 
@@ -588,6 +590,23 @@ button:hover {
   margin: 0;
   list-style: none;
 }
+
+/* Make the card’s contents expand to fill available height */
+#dailyEcoChallenge {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Let the challenge list expand to fill the remaining space */
+#challengeList {
+  flex: 1;
+  overflow-y: auto; /* optional, adds scroll if many items */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 
 #challengeList li {
   display: flex;
