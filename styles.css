@@ -384,6 +384,9 @@ button:hover {
 }
 
 /*#endregion*/
+
+
+
 /*#region AI Chat Tab Styles*/
 
 #tab-ai .chat-container {
@@ -809,6 +812,52 @@ button:hover {
   top: 10px;
   right: 10px;
   font-size: 12px;
+}
+
+#ecoReminder input[type="text"],
+#ecoReminder input[type="time"] {
+  width: 90%;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--secondary-font-color);
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+}
+
+#ecoReminder ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  text-align: left;
+}
+
+#ecoReminder li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+  color: var(--font-color);
+}
+
+#ecoReminder button {
+  background-color: var(--accent-color);
+  border: none;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#ecoReminder button:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
 }
 
 /* Responsive for small screens */

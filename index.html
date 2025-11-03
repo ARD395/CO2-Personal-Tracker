@@ -228,6 +228,18 @@
             </div>
             <canvas id="moodChart" width="280" height="150"></canvas>
           </div>
+
+          <!-- Personal Eco Reminder -->
+          <div class="impact-card" id="ecoReminder">
+            <h2>⏰ Eco Reminder</h2>
+            <p>Set a personal reminder to stay eco-conscious!</p>
+            
+            <input type="text" id="reminderText" placeholder="E.g. Water the plants 🌿" />
+            <input type="time" id="reminderTime" />
+            <button onclick="addReminder()">Set Reminder</button>
+
+            <ul id="reminderList"></ul>
+          </div>
         </div>
         <div id="filler"></div>
       </div>

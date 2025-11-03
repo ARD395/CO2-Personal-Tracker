@@ -268,6 +268,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //#endregion
 
+
+
 //#region Table and Graph Rendering
 
 // Table Rendering
@@ -569,6 +571,117 @@ function renderMoodChart() {
     options: { scales: { yAxes: [{ ticks: { stepSize: 1, min: 0, max: 4 } }] } }
   });
 }
+
+// ----- PERSONAL ECO REMINDER (setTimeout version) -----
+
+function addReminder() {
+  const text = document.getElementById("reminderText").value.trim();
+  const time = document.getElementById("reminderTime").value;
+
+  if (!text || !time) {
+    alert("Please enter both a reminder text and time!");
+    return;
+  }
+
+  const reminders = JSON.parse(localStorage.getItem("ecoReminders")) || [];
+  reminders.push({ text, time, triggered: false });
+  localStorage.setItem("ecoReminders", JSON.stringify(reminders));
+
+  document.getElementById("reminderText").value = "";
+  document.getElementById("reminderTime").value = "";
+
+  renderReminders();
+  scheduleReminder(text, time);
+}
+
+// Display reminders
+function renderReminders() {
+  const list = document.getElementById("reminderList");
+  const reminders = JSON.parse(localStorage.getItem("ecoReminders")) || [];
+
+  if (reminders.length === 0) {
+    list.innerHTML = "<li>No reminders set yet 🌿</li>";
+    return;
+  }
+
+  list.innerHTML = reminders
+    .map(
+      (r, i) => `
+      <li>
+        <p>🕒 ${formatTime(r.time)} — ${r.text}</p>
+        <button onclick="deleteReminder(${i})">❌</button>
+      </li>`
+    )
+    .join("");
+}
+
+// Delete a reminder
+function deleteReminder(index) {
+  const reminders = JSON.parse(localStorage.getItem("ecoReminders")) || [];
+  reminders.splice(index, 1);
+  localStorage.setItem("ecoReminders", JSON.stringify(reminders));
+  renderReminders();
+}
+
+// Schedule reminder to fire at the correct time
+function scheduleReminder(text, time) {
+  const now = new Date();
+  const [h, m] = time.split(":").map(Number);
+
+  const target = new Date();
+  target.setHours(h, m, 0, 0);
+
+  // If the time has already passed today, schedule for tomorrow
+  if (target <= now) {
+    target.setDate(target.getDate() + 1);
+  }
+
+  const delay = target - now; // milliseconds
+  console.log(`⏰ Scheduling "${text}" in ${Math.round(delay / 1000 / 60)} min`);
+
+  setTimeout(() => {
+    showNotification("🌱 Eco Reminder", text);
+    markReminderTriggered(time);
+  }, delay);
+}
+
+// Mark reminder as triggered (to prevent duplicates)
+function markReminderTriggered(time) {
+  const reminders = JSON.parse(localStorage.getItem("ecoReminders")) || [];
+  const updated = reminders.map(r => 
+    r.time === time ? { ...r, triggered: true } : r
+  );
+  localStorage.setItem("ecoReminders", JSON.stringify(updated));
+}
+
+// Restore reminders after page refresh
+document.addEventListener("DOMContentLoaded", () => {
+  renderReminders();
+  const reminders = JSON.parse(localStorage.getItem("ecoReminders")) || [];
+  reminders.forEach(r => scheduleReminder(r.text, r.time));
+});
+
+// Show notification (handles permission)
+function showNotification(title, body) {
+  if (Notification.permission === "granted") {
+    new Notification(title, { body });
+  } else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then((perm) => {
+      if (perm === "granted") new Notification(title, { body });
+    });
+  }
+}
+
+// Format time in AM/PM
+function formatTime(time) {
+  const [h, m] = time.split(":");
+  const hours = ((+h + 11) % 12) + 1;
+  const ampm = +h >= 12 ? "PM" : "AM";
+  return `${hours}:${m} ${ampm}`;
+}
+
+
+
 
 // Initialise when Impact tab opens
 function initImpactTab() {
