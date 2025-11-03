@@ -458,23 +458,6 @@ calculateCO2 = function() {
   if (last) updateOffsetDisplay(last.totalCO2);
 };
 
-// 6️⃣ Community Message Board
-function postMessage() {
-  const input = document.getElementById("messageInput");
-  if (!input.value.trim()) return;
-  const messages = JSON.parse(localStorage.getItem("ecoMessages")) || [];
-  messages.push({ text: input.value.trim(), date: new Date().toLocaleString() });
-  localStorage.setItem("ecoMessages", JSON.stringify(messages.slice(-10))); // keep last 10
-  input.value = "";
-  renderMessages();
-}
-
-function renderMessages() {
-  const list = document.getElementById("messageList");
-  const messages = JSON.parse(localStorage.getItem("ecoMessages")) || [];
-  list.innerHTML = messages.map(m => `<li><b>${m.date}:</b> ${m.text}</li>`).join("");
-}
-
 // 7️⃣ Eco Mood Tracker
 function setMood(icon) {
   const moods = JSON.parse(localStorage.getItem("ecoMoods")) || [];
