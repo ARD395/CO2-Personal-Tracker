@@ -392,6 +392,8 @@ function incrementStreak() {
   let streak = parseInt(localStorage.getItem("ecoStreak") || "0", 10);
   streak++;
   localStorage.setItem("ecoStreak", streak);
+  ecoStreakDisplay.textContent = streak;
+  localStorage.setItem("lastCompletedDate", today);
 }
 
 // Reset all challenges if it’s a new day
@@ -400,6 +402,7 @@ function resetChallengesIfNewDay() {
   const today = new Date().toDateString();
 
   if (lastDate !== today) {
+    localStorage.removeItem("challengeStates");
     const inputs = challengeList.querySelectorAll("input");
     inputs.forEach((input) => {
       input.checked = false;
@@ -483,7 +486,7 @@ function renderMoodChart() {
 
 // Initialise when Impact tab opens
 function initImpactTab() {
-  loadDailyChallenge();
+  loadChallenges();
   renderPledges();
   renderMessages();
   renderMoodChart();
@@ -491,19 +494,31 @@ function initImpactTab() {
 
 // ----- RESET IMPACT TAB -----
 function resetImpactTab() {
-  if (confirm("Are you sure you want to reset all your eco progress?")) {
-    localStorage.removeItem("challengeStates");
-    localStorage.removeItem("ecoStreak");
-    localStorage.removeItem("lastCompletedDate");
+  if (!confirm("Are you sure you want to reset all your eco progress?")) return;
 
-    challengeList.querySelectorAll("input").forEach((input) => {
-      input.checked = false;
-      input.closest("li").classList.remove("completed");
-    });
+  // Clear stored data
+  localStorage.removeItem("challengeStates");
+  localStorage.removeItem("ecoStreak");
+  localStorage.removeItem("lastCompletedDate");
+  localStorage.removeItem("ecoPledges");
+  localStorage.removeItem("ecoMessages");
+  localStorage.removeItem("ecoMoods");
 
-    ecoStreakDisplay.textContent = "0";
-    alert("All eco challenges and streaks have been reset 🌿");
-  }
+  // Reset UI immediately
+  challengeList.querySelectorAll("input").forEach((input) => {
+    input.checked = false;
+    const li = input.closest("li");
+    if (li) li.classList.remove("completed");
+  });
+
+  ecoStreakDisplay.textContent = "0";
+
+  // Refresh all eco tab elements
+  renderPledges();
+  renderMessages();
+  renderMoodChart();
+  updateOffsetDisplay(0);
+  loadChallenges(); // ensures UI re-syncs
+
+  alert("All eco progress has been reset 🌿");
 }
-
-//#endregion
