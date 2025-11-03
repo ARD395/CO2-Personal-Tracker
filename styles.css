@@ -139,6 +139,40 @@ h1 {
 
 /*#region Calculator Form Styles*/
 
+/* Hide scrollbars but keep scroll functionality */
+.left-scroll-section::-webkit-scrollbar,
+.right-fixed-section::-webkit-scrollbar,
+#did-you-know-section::-webkit-scrollbar,
+#facts-section::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.left-scroll-section,
+.right-fixed-section,
+#did-you-know-section,
+#facts-section {
+  scrollbar-width: none; /* hides scrollbar */
+  -ms-overflow-style: none; /* IE and Edge legacy */
+}
+
+/* Main container layout */
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Left side: scrollable form */
+.left-scroll-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: var(--bg-color);
+  border-right: 2px solid var(--border-color);
+}
+
 form {
   width: 100%;
 }
@@ -159,15 +193,15 @@ legend {
   font-family: 'Playfair Display', sans-serif;
   font-weight: 900;
   font-size: 40px;
-  color: var(--font-color);
+  color: var(--icon-color);
 }
 
 label {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 15px;
   color: var(--secondary-font-color);
   display: block;
-  font-weight: bold;
+  font-weight: 400;
   margin: 20px 0;
   margin-top: 1px;
 }
@@ -220,19 +254,6 @@ button:hover {
   height: 12vh;
 }
 
-.earth-img {
-  position: sticky;  /* Stays in the normal flow but can stick */
-  align-self: flex-start;
-  top: 10vh;
-  z-index: 1;
-}
-
-.earth-img img {
-  width: 40vw;
-  height: auto;
-  pointer-events: none;  /* Optional: so it doesn’t block clicks on other elements */
-}
-
 /*#endregion*/
 
 
@@ -274,20 +295,29 @@ button:hover {
 
 
 
-/*#region Popup Box Styles*/
+/*#region GK Section Styles*/
 
-.gk-section {
+/* Right side: fixed non-scrollable section */
+.right-fixed-section {
   flex: 1;
   position: sticky;
   top: 0;
   height: 100vh;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   background-color: var(--background-alt);
   padding: 10px;
+}
+
+/* Ensure both inner sections adapt well */
+.gk-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90%;
+  height: 80%;
 }
 
 #did-you-know-section {
