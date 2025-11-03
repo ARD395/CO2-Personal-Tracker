@@ -125,6 +125,70 @@
       </div>
     </section>
 
+    <section id="tab-impact" class="tab">
+      <div class="impact-container scroll-section">
+
+        <h2 class="impact-heading">🌍 Eco Impact Hub</h2>
+        <p class="impact-intro">Small actions, big difference — join daily challenges and share your eco spirit!</p>
+
+        <!-- Daily Eco Challenge -->
+        <div class="impact-card">
+          <h3>🌱 Daily Eco Challenge</h3>
+          <p id="dailyChallenge"></p>
+          <button onclick="markChallengeDone()">Mark Done ✅</button>
+          <p id="streakDisplay"></p>
+        </div>
+
+        <!-- Eco Pledge Board -->
+        <div class="impact-card">
+          <h3>🤝 Eco Pledge Board</h3>
+          <input type="text" id="pledgeInput" placeholder="Write your eco pledge..." />
+          <button onclick="addPledge()">Add Pledge</button>
+          <ul id="pledgeList"></ul>
+        </div>
+
+        <!-- Water Saver Reminder -->
+        <div class="impact-card">
+          <h3>💧 Water Saver Reminder</h3>
+          <p>EcoSathi will remind you to save water every 3 hours 💦</p>
+          <button onclick="sendWaterReminder()">Test Reminder</button>
+        </div>
+
+        <!-- Eco Tip Sharing -->
+        <div class="impact-card">
+          <h3>📤 Share an Eco Tip</h3>
+          <button onclick="shareEcoTip()">Share Random Tip</button>
+        </div>
+
+        <!-- Carbon Offset Tracker -->
+        <div class="impact-card">
+          <h3>🌳 Carbon Offset Tracker</h3>
+          <p id="offsetText">Calculate your footprint to see your offset goals.</p>
+        </div>
+
+        <!-- Community Message Board -->
+        <div class="impact-card">
+          <h3>💬 Community Message Board</h3>
+          <input type="text" id="messageInput" placeholder="Share a thought..." />
+          <button onclick="postMessage()">Post</button>
+          <ul id="messageList"></ul>
+        </div>
+
+        <!-- Eco Mood Tracker -->
+        <div class="impact-card">
+          <h3>☀️ Eco Mood Tracker</h3>
+          <div class="mood-buttons">
+            <button onclick="setMood('😊')">😊</button>
+            <button onclick="setMood('🌿')">🌿</button>
+            <button onclick="setMood('😐')">😐</button>
+            <button onclick="setMood('😔')">😔</button>
+          </div>
+          <canvas id="moodChart" width="300" height="150"></canvas>
+        </div>
+
+      </div>
+    </section>
+
     <section id="tab-profile" class="tab">
       <div class="profile-details">
         <div class="profile-icon">
@@ -187,6 +251,10 @@
 
       <svg class="nav-icon" data-tab="tab-ai" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
         <path d="M320 64C302.3 64 288 78.3 288 96L288 99.2C215 114 160 178.6 160 256L160 277.7C160 325.8 143.6 372.5 113.6 410.1L103.8 422.3C98.7 428.6 96 436.4 96 444.5C96 464.1 111.9 480 131.5 480L508.4 480C528 480 543.9 464.1 543.9 444.5C543.9 436.4 541.2 428.6 536.1 422.3L526.3 410.1C496.4 372.5 480 325.8 480 277.7L480 256C480 178.6 425 114 352 99.2L352 96C352 78.3 337.7 64 320 64zM258 528C265.1 555.6 290.2 576 320 576C349.8 576 374.9 555.6 382 528L258 528z"/>
+      </svg>
+
+      <svg class="nav-icon" data-tab="tab-impact" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+        <path d="M102.8 57.3C108.2 51.9 116.6 51.1 123 55.3L241.9 134.5C250.8 140.4 256.1 150.4 256.1 161.1L256.1 210.7L346.9 301.5C380.2 286.5 420.8 292.6 448.1 320L574.2 446.1C592.9 464.8 592.9 495.2 574.2 514L514.1 574.1C495.4 592.8 465 592.8 446.2 574.1L320.1 448C292.7 420.6 286.6 380.1 301.6 346.8L210.8 256L161.2 256C150.5 256 140.5 250.7 134.6 241.8L55.4 122.9C51.2 116.6 52 108.1 57.4 102.7L102.8 57.3zM247.8 360.8C241.5 397.7 250.1 436.7 274 468L179.1 563C151 591.1 105.4 591.1 77.3 563C49.2 534.9 49.2 489.3 77.3 461.2L212.7 325.7L247.9 360.8zM416.1 64C436.2 64 455.5 67.7 473.2 74.5C483.2 78.3 485 91 477.5 98.6L420.8 155.3C417.8 158.3 416.1 162.4 416.1 166.6L416.1 208C416.1 216.8 423.3 224 432.1 224L473.5 224C477.7 224 481.8 222.3 484.8 219.3L541.5 162.6C549.1 155.1 561.8 156.9 565.6 166.9C572.4 184.6 576.1 203.9 576.1 224C576.1 267.2 558.9 306.3 531.1 335.1L482 286C448.9 253 403.5 240.3 360.9 247.6L304.1 190.8L304.1 161.1L303.9 156.1C303.1 143.7 299.5 131.8 293.4 121.2C322.8 86.2 366.8 64 416.1 63.9z"/>
       </svg>
 
       <svg class="nav-icon" data-tab="tab-profile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">

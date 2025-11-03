@@ -327,3 +327,149 @@ chatBox.innerHTML += `
     <div class="message-content">${formattedReply}</div>
   </div>
 `;
+
+
+
+
+
+// ----- IMPACT TAB FEATURES -----
+
+// 1️⃣ Daily Eco Challenge
+const challenges = [
+  "Refill your water bottle instead of buying plastic.",
+  "Turn off one unused appliance today.",
+  "Eat one plant-based meal today.",
+  "Walk or bike instead of using your vehicle.",
+  "Pick up 5 pieces of litter in your neighbourhood.",
+  "Avoid single-use plastic for a day.",
+  "Spend 10 minutes learning about climate change."
+];
+function loadDailyChallenge() {
+  const today = new Date().toDateString();
+  const stored = JSON.parse(localStorage.getItem("dailyChallenge"));
+  if (stored && stored.date === today) {
+    document.getElementById("dailyChallenge").textContent = stored.text;
+  } else {
+    const random = challenges[Math.floor(Math.random() * challenges.length)];
+    localStorage.setItem("dailyChallenge", JSON.stringify({ date: today, text: random, done: false }));
+    document.getElementById("dailyChallenge").textContent = random;
+  }
+  updateStreak();
+}
+function markChallengeDone() {
+  const stored = JSON.parse(localStorage.getItem("dailyChallenge"));
+  if (!stored.done) {
+    stored.done = true;
+    localStorage.setItem("dailyChallenge", JSON.stringify(stored));
+    let streak = Number(localStorage.getItem("ecoStreak") || 0) + 1;
+    localStorage.setItem("ecoStreak", streak);
+    updateStreak();
+    alert("Great job! You completed today's challenge 🌿");
+  }
+}
+function updateStreak() {
+  const streak = localStorage.getItem("ecoStreak") || 0;
+  document.getElementById("streakDisplay").textContent = `Current streak: ${streak} day(s) 🔥`;
+}
+
+// 2️⃣ Eco Pledge Board
+function addPledge() {
+  const input = document.getElementById("pledgeInput");
+  if (!input.value.trim()) return;
+  const pledges = JSON.parse(localStorage.getItem("ecoPledges")) || [];
+  pledges.push(input.value.trim());
+  localStorage.setItem("ecoPledges", JSON.stringify(pledges));
+  input.value = "";
+  renderPledges();
+}
+function renderPledges() {
+  const list = document.getElementById("pledgeList");
+  const pledges = JSON.parse(localStorage.getItem("ecoPledges")) || [];
+  list.innerHTML = pledges.map(p => `<li>${p}</li>`).join("");
+}
+
+// 3️⃣ Water Saver Reminder
+function sendWaterReminder() {
+  if (Notification.permission !== "granted") return;
+  new Notification("💧 Water Reminder", { body: "Turn off the tap while brushing or washing dishes!" });
+}
+setInterval(sendWaterReminder, 10800000); // every 3 hours
+
+// 4️⃣ Eco Tip Sharing
+function shareEcoTip() {
+  const randomTip = challenges[Math.floor(Math.random() * challenges.length)];
+  if (navigator.share) {
+    navigator.share({ title: "EcoSathi Tip 🌱", text: randomTip });
+  } else {
+    alert(randomTip);
+  }
+}
+
+// 5️⃣ Carbon Offset Tracker
+function updateOffsetDisplay(value = 0) {
+  document.getElementById("offsetText").textContent =
+    `You’d need approximately ${Math.ceil(value / 1800)} tree(s) to offset your daily footprint.`;
+}
+
+// Hook into your CO2 calculator result
+const oldCalculate = calculateCO2;
+calculateCO2 = function() {
+  oldCalculate();
+  const last = JSON.parse(localStorage.getItem("ecoHistory"))?.slice(-1)[0];
+  if (last) updateOffsetDisplay(last.totalCO2);
+};
+
+// 6️⃣ Community Message Board
+function postMessage() {
+  const input = document.getElementById("messageInput");
+  if (!input.value.trim()) return;
+  const messages = JSON.parse(localStorage.getItem("ecoMessages")) || [];
+  messages.push({ text: input.value.trim(), date: new Date().toLocaleString() });
+  localStorage.setItem("ecoMessages", JSON.stringify(messages.slice(-10))); // keep last 10
+  input.value = "";
+  renderMessages();
+}
+function renderMessages() {
+  const list = document.getElementById("messageList");
+  const messages = JSON.parse(localStorage.getItem("ecoMessages")) || [];
+  list.innerHTML = messages.map(m => `<li><b>${m.date}:</b> ${m.text}</li>`).join("");
+}
+
+// 7️⃣ Eco Mood Tracker
+function setMood(icon) {
+  const moods = JSON.parse(localStorage.getItem("ecoMoods")) || [];
+  moods.push({ icon, date: new Date().toLocaleDateString() });
+  localStorage.setItem("ecoMoods", JSON.stringify(moods.slice(-7)));
+  renderMoodChart();
+}
+function renderMoodChart() {
+  const ctx = document.getElementById("moodChart").getContext("2d");
+  const moods = JSON.parse(localStorage.getItem("ecoMoods")) || [];
+  const labels = moods.map(m => m.date);
+  const values = moods.map(m => ["😔","😐","🌿","😊"].indexOf(m.icon)+1);
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{ label: "Eco Mood", data: values, borderColor: "#2e7d32", fill: false }]
+    },
+    options: { scales: { yAxes: [{ ticks: { stepSize: 1, min: 0, max: 4 } }] } }
+  });
+}
+
+// Initialise when Impact tab opens
+function initImpactTab() {
+  loadDailyChallenge();
+  renderPledges();
+  renderMessages();
+  renderMoodChart();
+}
+
+// Extend tab switching to include Impact tab
+document.querySelectorAll('.nav-icon').forEach(icon => {
+  icon.addEventListener('click', () => {
+    const targetTab = icon.getAttribute('data-tab');
+    switchTabs(targetTab);
+    if (targetTab === "tab-impact") initImpactTab();
+  });
+});

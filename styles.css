@@ -290,6 +290,90 @@ button:hover {
 
 
 
+/* --- IMPACT TAB STYLES --- */
+.impact-container {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  padding: 10px;
+}
+
+.impact-heading {
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2rem;
+  color: #1b5e20;
+  margin-bottom: 5px;
+}
+
+.impact-intro {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #2e4600;
+}
+
+.impact-card {
+  background: #f4fff5;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.impact-card h3 {
+  color: #2e7d32;
+  margin-bottom: 8px;
+}
+
+.impact-card button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.impact-card button:hover {
+  background-color: #388e3c;
+}
+
+.impact-card input {
+  width: 80%;
+  padding: 6px;
+  margin: 5px 0;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+}
+
+.impact-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.impact-card li {
+  background: #e8f5e9;
+  margin: 4px 0;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.mood-buttons button {
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+
+
+
 /* ===== PROFILE SECTION LAYOUT ===== */
 #tab-profile.tab.active-tab {
   display: flex;
