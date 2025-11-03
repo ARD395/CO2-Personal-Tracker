@@ -1,17 +1,21 @@
+/*#region Variables*/
+
 :root {
-  --bg-color: #00000060;            /* Soft cream backdrop – matches the sunlight */
-  --accent-color: #134100;        /* Fresh green accent – lively and natural */
-  --icon-color: #ffffff;          /* Muted blue-gray for balance */
-  --shadow-color: rgba(0, 0, 0, 0.15); /* Gentle shadow */
-  --font-color: rgb(95, 62, 10);          /* Dark gray for readability */
+  --bg-color: #00000060;                          /* Soft cream backdrop – matches the sunlight */
+  --accent-color: #134100;                        /* Fresh green accent – lively and natural */
+  --icon-color: #ffffff;                          /* Muted blue-gray for balance */
+  --shadow-color: rgba(0, 0, 0, 0.15);            /* Gentle shadow */
+  --font-color: rgb(95, 62, 10);                  /* Dark gray for readability */
   --secondary-font-color: rgb(235, 235, 235);
-  --border-color: #003307;        /* Pale green for soft outlines */
-  --hover-color: #002505;         /* Darker green for hover effects */
+  --border-color: #003307;                        /* Pale green for soft outlines */
+  --hover-color: #002505;                         /* Darker green for hover effects */
 }
 
+/*#endregion*/
 
 
-/* -------------------- RESET & BASE STYLES -------------------- */
+
+/*#region Reset CSS Styles*/
 *,
 *::before,
 *::after {
@@ -35,7 +39,7 @@ main.app {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Aligns content to top, removes top gap */
+  justify-content: flex-start;
 }
 
 h1 {
@@ -45,9 +49,11 @@ h1 {
   font-size: 70px;
 }
 
+/*#endregion*/
 
 
-/* -------------------- TABS (PAGES) -------------------- */
+
+/*#region Tab Stylings*/
 .tab {
   display: none;
   padding: 2rem;
@@ -77,46 +83,11 @@ h1 {
   justify-content: space-evenly;
 }
 
-
-
-/* -------------------- NAVIGATION BAR -------------------- */
-.nav-bar {
-  background-color: rgba(0, 0, 0, 0.11);
-  backdrop-filter: blur(5px);
-  border-radius: 45px 45px 0 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  box-shadow: 0 -2px 10px var(--shadow-color);
-  border: 1px solid var(--border-color);
-}
-
-/* Navigation icons */
-.nav-icon {
-  width: 6vh;
-  height: auto;
-  fill: var(--icon-color);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.nav-icon:hover {
-  fill: var(--accent-color);
-  transform: scale(1.1);
-}
-
-.nav-icon.active-icon {
-  fill: var(--accent-color);
-  transform: scale(1.1);
-}
+/*#endregion*/
 
 
 
-/* -------------------- NOTIFICATION STYLES -------------------- */
+/*#region Notification Stylings*/
 
 .notification-section {
   display: flex;
@@ -157,9 +128,12 @@ h1 {
   background-color: #2e7d32;
 }
 
+/*#endregion*/
 
 
-/* -------------------- FORM STYLES -------------------- */
+
+/*#region Calculator Form Styles*/
+
 form {
   width: 100%;
 }
@@ -254,9 +228,12 @@ button:hover {
   pointer-events: none;  /* Optional: so it doesn’t block clicks on other elements */
 }
 
+/*#endregion*/
 
 
-/* Popup box styling */
+
+/*#region Popup Box Styles*/
+
 .popup {
   display: none;
   position: fixed;
@@ -288,11 +265,167 @@ button:hover {
   to { transform: scale(1); opacity: 1; }
 }
 
+/*#endregion*/
 
 
-/* --- IMPACT TAB STYLES --- */
-/* --- BENTO GRID DESIGN FOR IMPACT TAB --- */
 
+/*#region AI Chat Tab Styles*/
+
+#tab-ai .chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80vh;
+  width: 80vw;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 0 15px var(--shadow-color);
+  overflow: hidden;
+  color: var(--secondary-font-color);
+}
+
+.chat-header {
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chat-header h2 {
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
+  font-size: 45px;
+  color: var(--secondary-font-color);
+}
+
+.chat-header p {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: var(--secondary-font-color);
+  margin-top: 0.3rem;
+}
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  scroll-behavior: smooth;
+}
+
+.message {
+  max-width: 70%;
+  padding: 1rem;
+  border-radius: 12px;
+  font-family: 'Playfair Display', serif;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.ai-message {
+  align-self: flex-start;
+  background-color: rgba(0, 128, 0, 0.3);
+  border: 1px solid var(--accent-color);
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.message-content {
+  font-size: 18px;
+  text-align: left;
+}
+
+/* --- Chat Input Area --- */
+.chat-input-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--border-color);
+  background-color: rgba(0, 0, 0, 0.3);
+  gap: 0.8rem;
+  box-sizing: border-box;
+}
+
+/* --- Input Box --- */
+.chat-input-area input {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
+  color: var(--secondary-font-color);
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  outline: none;
+  height: 46px; /* consistent height */
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.chat-input-area input::placeholder {
+  color: var(--secondary-font-color);
+}
+
+/* --- Send Button --- */
+.chat-input-area button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-color);
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 46px;  /* matches input height */
+  height: 46px; /* matches input height exactly */
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.chat-input-area button i {
+  pointer-events: none;
+  transform: translateY(1px);
+}
+
+.chat-input-area button:hover {
+  background-color: var(--hover-color);
+  transform: scale(1.05);
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.message-content {
+  white-space: pre-wrap; /* preserves line breaks and spaces */
+}
+
+/*#endregion*/
+
+
+
+/*#region Impact Tab Styles*/
+
+/*Bento Box for Different Tools*/
 .impact-container {
   width: 85%;
   margin: 0 auto;
@@ -442,12 +575,12 @@ button:hover {
   }
 }
 
+/*#endregion*/
 
 
 
+/*#region Profile Styles*/
 
-
-/* ===== PROFILE SECTION LAYOUT ===== */
 #tab-profile.tab.active-tab {
   display: flex;
   flex-direction: row;
@@ -477,7 +610,7 @@ button:hover {
   border-radius: 10px;
 }
 
-/* Scrollable right section (history + tree) */
+/* Scrollable right section*/
 .profile-scroll {
   flex: 1;
   overflow-y: auto;
@@ -493,7 +626,7 @@ button:hover {
   flex-direction: column;
   gap: 20px;
   overflow-y: auto;
-  max-height: 80vh; /* scrollable region */
+  max-height: 80vh;
   padding-right: 10px;
 }
 
@@ -547,28 +680,8 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Tree section styling */
-.profile-tree {
-  width: 80%;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  border: 1px solid var(--border-color);
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.profile-tree img {
-  height: 40vh;
-  width: auto;
-  margin-bottom: 10px;
-}
-
 .profile-tree .circle {
-  display: none; /* Simplify for cleaner mobile look */
+  display: none;
 }
 
 /* Make scroll smooth and hidden scrollbar */
@@ -579,7 +692,12 @@ button:hover {
   display: none;
 }
 
-/* ===== History Table Styling ===== */
+/*#endregion*/
+
+
+
+/*#region History Table Styles*/
+
 #historyContainer {
   margin-top: 20px;
   width: 90%;
@@ -691,6 +809,12 @@ button:hover {
   }
 }
 
+/*#endregion*/
+
+
+
+/*#region CO2 Chart Styles*/
+
 #co2Chart{
  margin:auto;
  width: 90%;
@@ -701,154 +825,43 @@ button:hover {
  color: var(--font-color);
 }
 
+/*#endregion*/
 
 
-/* -------------------- AI CHAT TAB -------------------- */
-#tab-ai .chat-container {
+
+/*#region Navbar Stylings*/
+
+.nav-bar {
+  background-color: rgba(0, 0, 0, 0.11);
+  backdrop-filter: blur(5px);
+  border-radius: 45px 45px 0 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 80vh;
-  width: 80vw;
-  margin: 0 auto;
-  background-color: var(--bg-color);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  box-shadow: 0 0 15px var(--shadow-color);
-  overflow: hidden;
-  color: var(--secondary-font-color);
-}
-
-.chat-header {
-  padding: 1rem;
-  background-color: var(--bg-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.chat-header h2 {
-  font-family: 'Playfair Display', sans-serif;
-  font-weight: 900;
-  font-size: 45px;
-  color: var(--secondary-font-color);
-}
-
-.chat-header p {
-  font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  color: var(--secondary-font-color);
-  margin-top: 0.3rem;
-}
-
-.chat-box {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  scroll-behavior: smooth;
-}
-
-.message {
-  max-width: 70%;
-  padding: 1rem;
-  border-radius: 12px;
-  font-family: 'Playfair Display', serif;
-  word-wrap: break-word;
-  line-height: 1.4;
-}
-
-.ai-message {
-  align-self: flex-start;
-  background-color: rgba(0, 128, 0, 0.3);
-  border: 1px solid var(--accent-color);
-}
-
-.user-message {
-  align-self: flex-end;
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.message-content {
-  font-size: 18px;
-  text-align: left;
-}
-
-/* --- Chat Input Area --- */
-.chat-input-area {
-  display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem 1rem;
-  border-top: 1px solid var(--border-color);
-  background-color: rgba(0, 0, 0, 0.3);
-  gap: 0.8rem;
-  box-sizing: border-box;
-}
-
-/* --- Input Box --- */
-.chat-input-area input {
-  flex: 1;
-  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -2px 10px var(--shadow-color);
   border: 1px solid var(--border-color);
-  color: var(--secondary-font-color);
-  font-family: 'Playfair Display', serif;
-  font-size: 16px;
-  padding: 0.7rem 1rem;
-  border-radius: 10px;
-  outline: none;
-  height: 46px; /* consistent height */
-  line-height: 1;
-  box-sizing: border-box;
 }
 
-.chat-input-area input::placeholder {
-  color: var(--secondary-font-color);
-}
-
-/* --- Send Button --- */
-.chat-input-area button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--accent-color);
-  border: none;
-  color: #fff;
-  border-radius: 10px;
+.nav-icon {
+  width: 6vh;
+  height: auto;
+  fill: var(--icon-color);
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 46px;  /* matches input height */
-  height: 46px; /* matches input height exactly */
-  font-size: 1.1rem;
-  line-height: 1;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  vertical-align: middle;
 }
 
-.chat-input-area button i {
-  pointer-events: none; /* avoids click issues */
-  transform: translateY(1px); /* fine vertical centering of icon */
+.nav-icon:hover {
+  fill: var(--accent-color);
+  transform: scale(1.1);
 }
 
-.chat-input-area button:hover {
-  background-color: var(--hover-color);
-  transform: scale(1.05);
+.nav-icon.active-icon {
+  fill: var(--accent-color);
+  transform: scale(1.1);
 }
 
-
-.chat-box::-webkit-scrollbar {
-  width: 8px;
-}
-
-.chat-box::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-.message-content {
-  white-space: pre-wrap; /* preserves line breaks and spaces */
-}
+/*#endregion*/

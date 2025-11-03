@@ -135,12 +135,46 @@
 
         <div class="impact-grid">
           <!-- Daily Eco Challenge -->
-          <div class="impact-card wide-card">
+          <div class="impact-card wide-card" id="dailyEcoChallenge">
             <h3>🌱 Daily Eco Challenge</h3>
-            <p id="dailyChallenge"></p>
-            <button onclick="markChallengeDone()">Mark Done ✅</button>
-            <p id="streakDisplay"></p>
+            <p>Complete small green actions every day to grow your positive impact!</p>
+
+            <ul id="challengeList">
+              <li>
+                <label>
+                  <input type="radio" name="challenge1" onchange="toggleChallenge(this)">
+                  Turn off lights when leaving a room 💡
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="challenge2" onchange="toggleChallenge(this)">
+                  Use a reusable water bottle instead of plastic 🧴
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="challenge3" onchange="toggleChallenge(this)">
+                  Walk or cycle instead of driving 🚶‍♀️
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="challenge4" onchange="toggleChallenge(this)">
+                  Plant or water a tree 🌳
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="challenge5" onchange="toggleChallenge(this)">
+                  Avoid single-use plastic today ♻️
+                </label>
+              </li>
+            </ul>
+
+            <p id="streakDisplay">🔥 Streak: <span id="ecoStreak">0</span> days</p>
           </div>
+
 
           <!-- Pledge Board -->
           <div class="impact-card">
