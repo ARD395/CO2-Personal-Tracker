@@ -185,8 +185,6 @@
                 <input type="checkbox" name="challenge5" onchange="toggleChallenge(this)">
               </li>
             </ul>
-
-            <p id="streakDisplay">🔥 Streak: <span id="ecoStreak">0</span> days</p>
           </div>
 
           <!-- Pledge Board -->
@@ -222,18 +220,6 @@
             <p>Gentle reminders to save water every 3 hours.</p>
             <button onclick="sendWaterReminder()">Test Reminder</button>
           </div>
-
-          <!-- Mood Tracker -->
-          <div class="impact-card wide-card">
-            <h2>☀️ Eco Mood Tracker</h2>
-            <div class="mood-buttons">
-              <button onclick="setMood('😊')">😊</button>
-              <button onclick="setMood('🌿')">🌿</button>
-              <button onclick="setMood('😐')">😐</button>
-              <button onclick="setMood('😔')">😔</button>
-            </div>
-            <canvas id="moodChart" width="280" height="150"></canvas>
-          </div>
         </div>
         <div id="filler"></div>
       </div>
@@ -266,6 +252,9 @@
       </div>
 
       <div class="scroll-section profile-scroll">
+        <div style="width: 90%; max-width: 900px; margin: 20px auto;">
+          <canvas id="co2Chart"></canvas>
+        </div>
         <div id="historyContainer">
           <h3>Your Eco History</h3>
           <table id="historyTable">
@@ -281,10 +270,6 @@
             </thead>
             <tbody></tbody>
           </table>
-        </div>
-
-        <div style="width: 90%; max-width: 900px; margin: 20px auto;">
-          <canvas id="co2Chart"></canvas>
         </div>
       </div>
     </section>

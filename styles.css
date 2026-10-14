@@ -11,7 +11,7 @@
   --hover-color: #002505;                         /* Deep green for hover effects */
   
   --yellow-bg: rgb(255, 245, 110) ;
-  --green-bg: rgb(163, 255, 110) ;
+  --green-bg: rgb(176, 255, 130) ;
   --yellow-text: rgb(54, 29, 0) ;
   --green-text: rgb(0, 41, 2) ;
 }
@@ -160,7 +160,7 @@ h1 {
 .main-layout {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 90vh;
   overflow: hidden;
 }
 
@@ -197,13 +197,17 @@ legend {
 }
 
 label {
-  font-family: 'Playfair Display', serif;
+  font-family: sans-serif;
   font-size: 15px;
   color: var(--secondary-font-color);
   display: block;
   font-weight: 400;
   margin: 20px 0;
   margin-top: 1px;
+}
+
+fieldset > label {
+  font-weight: 600;
 }
 
 input,
@@ -220,7 +224,7 @@ select {
 }
 
 button {
-  height: 15vh;
+  height: 12vh;
   font-family: 'Playfair Display', serif;
   background-color: var(--accent-color);
   color: white;
@@ -446,7 +450,7 @@ button:hover {
 
 .ai-message {
   align-self: flex-start;
-  background-color: rgba(0, 128, 0, 0.3);
+  background-color: rgba(1, 70, 16, 0.638);
   border: 1px solid var(--accent-color);
 }
 
@@ -535,6 +539,10 @@ button:hover {
 
 .message-content {
   white-space: pre-wrap; /* preserves line breaks and spaces */
+}
+
+.user-message .message-content {
+  color: var(--hover-color);
 }
 
 /*#endregion*/
