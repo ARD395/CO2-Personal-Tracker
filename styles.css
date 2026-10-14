@@ -214,13 +214,14 @@ input,
 select {
   background-color: var(--bg-color);
   color: var(--secondary-font-color);
-  font-family: 'Playfair Display', serif;
+  font-family: sans-serif;
   padding: 6px;
   width: 90%;
   margin: 8px 0;
   border-radius: 6px;
   border: 2px solid var(--border-color);
   height: 6vh;
+  font-size: 14px;
 }
 
 button {
