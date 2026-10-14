@@ -1,3 +1,4 @@
+let maxScore = 10000;
 //#region Tab Switching Logic
 
 // ----- Tab Switching -----
@@ -154,6 +155,7 @@ function calculateCO2() {
   if (lights === "Always") totalCO2 -= (2200/30);
   else if (lights === "Sometimes") totalCO2 -= ((2200/3)/30);
   if (totalCO2 < 0) totalCO2 = 0;
+  if (totalCO2 > maxScore) maxScore = totalCO2;
 
   // --- Tier Message ---
   let scoreText = "";
@@ -310,41 +312,51 @@ function renderHistoryTable() {
 
 // Render Graph
 function renderCO2Graph() {
-  ctx = document.getElementById("co2Chart");
+  const ctx = document.getElementById("co2Chart").getContext("2d");
   Chart.defaults.global.defaultFontColor = 'rgba(54, 34, 1, 1)';
+  
   const history = JSON.parse(localStorage.getItem("ecoHistory")) || [];
   const dates = history.map(entry => {
     const d = new Date(entry.date);
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
   });
   const co2Values = history.map(entry => Number(entry.totalCO2));
+  const dynamicMax = Math.ceil((maxScore + 1) / 1000) * 1000;
 
-// New Chart Instance
-new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: dates,
-    datasets: [{
-      label: 'Daily CO₂ (g)',
-      data: co2Values,
-      backgroundColor: '#331900ff',
-      borderColor: '#0e5300ff',
-      fill: false,
-      tension: 0.3
-    }]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      yAxes: [{ticks: {min: 0, max:20000, stepSize: 2000},}]
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
+        label: 'Daily CO₂ (g)',
+        data: co2Values,
+        backgroundColor: '#331900ff',
+        borderColor: '#0e5300ff',
+        fill: false,
+        tension: 0.3
+      }]
     },
-    legend: {                  
-      labels: {
-        fontSize: 18,          
+    options: {
+      responsive: true,
+      scales: {
+        xAxes: [{
+          display: false
+        }],
+        yAxes: [{
+          ticks: {
+            min: 0,
+            max: dynamicMax,
+            stepSize: dynamicMax / 10
+          }
+        }]
+      },
+      legend: {                  
+        labels: {
+          fontSize: 18          
+        }
       }
-    },
-  }
-});
+    }
+  });
 }
 
 //#endregion
@@ -588,29 +600,6 @@ function shareEcoTip() {
     .catch(() => {
       alert("❌ Could not copy to clipboard — please try again.");
     });
-}
-
-// 7️⃣ Eco Mood Tracker
-function setMood(icon) {
-  const moods = JSON.parse(localStorage.getItem("ecoMoods")) || [];
-  moods.push({ icon, date: new Date().toLocaleDateString() });
-  localStorage.setItem("ecoMoods", JSON.stringify(moods.slice(-7)));
-  renderMoodChart();
-}
-
-function renderMoodChart() {
-  const ctx = document.getElementById("moodChart").getContext("2d");
-  const moods = JSON.parse(localStorage.getItem("ecoMoods")) || [];
-  const labels = moods.map(m => m.date);
-  const values = moods.map(m => ["😔","😐","🌿","😊"].indexOf(m.icon)+1);
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels,
-      datasets: [{ label: "Eco Mood", data: values, borderColor: "#2e7d32", fill: false }]
-    },
-    options: { scales: { yAxes: [{ ticks: { stepSize: 1, min: 0, max: 4 } }] } }
-  });
 }
 
 // ----- PERSONAL ECO REMINDER (setTimeout version) -----
